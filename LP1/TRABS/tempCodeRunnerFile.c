@@ -1,0 +1,2 @@
+resultado = det(dim,mtx);
+	
