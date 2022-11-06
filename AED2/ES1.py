@@ -3,30 +3,35 @@ import random
 def meio(a,b):
     return (a+b)//2
 
-def part(Vet):
-    if len(Vet)>1:
-        pivot = len(Vet)
+def QuickSort(Vet, i, f):
+    if i < f:
+        pivot = Vet[i]
+        aux = i
 
-        smaller = []
-        bigger = []
+        for j in range(i+1,f+1):
+            if Vet[j] <= pivot:
+                aux += 1
+                Vet[j], Vet[aux] = Vet[aux], Vet[j]
+        
+        Vet[i], Vet[aux] = Vet[aux], Vet[i]
 
-        for i in Vet:
-            if i <= Vet[pivot]:
-                smaller.append(i)
-            else:
-                bigger.append(i)
-
-        return (part(smaller)+Vet[pivot]+part(bigger))
+        QuickSort(Vet, i, aux-1)
+        QuickSort(Vet, aux+1, f)
+        
+        return Vet
 
     else:
         return Vet
 
 def cria():
-    tamanho = input("Tamanho do vetor: ")
+    vetor = []
+    tamanho = int(input("Tamanho do vetor: "))
     i, f = map(int,input("Menor e maior valor do vetor: ").split())
-    # for i in range(i,f+1):
-
-
+    
+    for i in range(tamanho):
+        vetor.append(random.randint(i,f))
+    
+    return vetor
 
 
 def Bin_Search(Vet, i, f, key):
@@ -36,10 +41,10 @@ def Bin_Search(Vet, i, f, key):
         m2 = meio(meio(i,f),f)
 
         if key == Vet[m1]:
-            return Vet[m1]
+            return m1
 
         elif key == Vet[m2]:
-            return Vet[m2]
+            return m2
 
         elif key < Vet[m1]:
             return Bin_Search(Vet, i, m1-1, key)
@@ -53,25 +58,48 @@ def Bin_Search(Vet, i, f, key):
     else:
         return -1
 
-chave = int(input("Insira o numero procurado: "))
-memo = [1,6,9,11,16,21,26,30,37,45,55,62,69,73,74]
-
-result = Bin_Search(memo,0,len(memo)-1,chave)
-print(result)
+memo = []
 
 while True:
-    print("A -> para criar novo vetor \n"
-    "B -> para buscar no vetor \n"
-    "C -> para encerrar \n")
+    print("\n\n"
+    "A -> para criar vetor aleatório\n"
+    "B -> para cria vetor personalizado\n"
+    "C -> para visualizar o vetor atual\n"
+    "D -> para buscar no vetor \n"
+    "X -> para encerrar \n")
     cmd = input("Insira o comando -> ")
 
     if cmd.lower() == 'a':
-        ss
+        memo = cria()
+        memo = QuickSort(memo,0,len(memo)-1)
 
     elif cmd.lower() == 'b':
-        ss
+        print("\nInsira os valores do vetor separados por espaço")
+        memo = list(map(int,input("-> ").split()))
+        memo = QuickSort(memo,0,len(memo)-1)
 
     elif cmd.lower() == 'c':
+        if len(memo) != 0:
+            print(*memo)
+        
+        else:
+            print("\nVetor Vazio!\n")
+
+    elif cmd.lower() == 'd':
+        if len(memo) != 0:
+            chave = int(input("Insira o numero procurado: "))
+            result = Bin_Search(memo,0,len(memo)-1,chave)
+
+            if result != -1:
+                print("O valor buscado está na posição %d"%result)
+
+            else:
+                print("\nValor não encontrado!\n")
+        
+        else:
+            print("\nVetor Vazio!\n")
+    
+    elif cmd.lower() == 'x':
         print("\nPrograma encerrado!!! \n")
         break
 
