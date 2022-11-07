@@ -27,13 +27,16 @@ def fill(n):
     
     for i in range(0,n):
         for j in range(i,n):
-            aux = int(input("V%d e V%d: "%(i,j)))
-            vet[i][j] = aux
-            vet[j][i] = aux
-            if aux==1:
-                a += 1
+            if i>j:
+                aux = int(input("V%d e V%d: "%(i,j)))
+                vet[i][j] = aux
+                vet[j][i] = aux
+                if aux==1:
+                    a += 1
     
     return (vet,a)
+
+def classegrafo():
 
 lock = True
 while lock:
@@ -46,8 +49,34 @@ while lock:
     if cmd.lower() == 'a':
         grafo = ""
         grafo += str(input("\nNome do grafo: ")) + "/"
-        n = int(input("Insira o número de vértices: "))
-        Mat_Adj,e = fill(n)
+        # n = int(input("Insira o número de vértices: "))
+        # e = int(input("Insira o número de arestas:  "))
+            print(
+                "0 - Manual                     \n"
+                "1 - Grafo completo             \n"
+                "2 - Grafo Bipartido Completo   \n"
+                "3 - Estrela                    \n"
+                "4 - Caminho                    \n")
+            cmd2 = input("--> ")
+            
+            if cmd == 0:
+                fill()
+            
+            elif cmd == 1:
+                completo()
+            
+            elif cmd == 2:
+                bicompleto()
+            
+            elif cmd == 3:
+                estrela()
+            
+            elif cmd == 4:
+                caminho()
+            
+            else:
+                print("\nComando inválido!\n")
+        Mat_Adj = fill(n)
         grafo += str(n) + "/" + str(e) + "/" + convstr(Mat_Adj) + "\n"
         file.write(grafo)
     
