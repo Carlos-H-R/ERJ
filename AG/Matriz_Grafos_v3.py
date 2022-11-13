@@ -182,7 +182,13 @@ while not file.closed:
 
         elif cmd2 == 7:
             #cubo
-            pass
+            g = int(input("Insira o grau do grafo: "))
+            n = 2 ** g
+            e = n * (2 ** (n-1))
+            Mat_Adj = mat(n)
+
+            for i in range(n):
+                pass
         
         else:
             print("\nComando inválido!\n")
