@@ -1,3 +1,5 @@
+import json
+
 def mat(size):
     v = []
     for i in range(size):
@@ -5,59 +7,68 @@ def mat(size):
         v.append(aux)
     return v
 
-def printMat(mat,k):
-    for i in range(k):
-        print(mat[i])
-            
-
-def fill(n):
+def fill(n,e):
     vet = mat(n)
-    a = 0
-    print(vet,n)
-    print("Os vertices estão conectados?  "
+    print("\nOs vertices estão conectados?  "
           "\n1 - para SIM/ 0 - para NÃO)\n")
-    
-    for i in range(0,n):
-        for j in range(i,n):
+        
+    for j in range(0,n):
+        for i in range(j+1,n):
             aux = int(input("%d e %d: "%(i+1,j+1)))
             vet[i][j] = aux
             vet[j][i] = aux
-            if aux==1:
-                a += 1
-    
-    return (vet,a)
 
-lock = True
-Grafos = []
+            if aux == 1:
+                e -= 1
 
-while lock:
-    file = open('Grafos.txt',"a+")
-    print("Comando A para ler novo grafo\n"
-          "Comando B para buscar grafo pelo nome\n")
+            if e == 0:
+                return vet
+
+def save(v,a,mat):
+    nome = str(input("\nNome do grafo: "))
+    file.seek(0)
+    dic = json.load(file)
+    dic.update({nome: (v,a,mat)})
+    file.seek(0)
+    file.write(json.dumps(dic))
+    file.truncate()
+
+
+file = open('Grafos.json',"r+")
+
+if not file.readline():
+    file.write('{}')
+
+while not file.closed:
+    print()
+    print("Comando A - para ler novo grafo\n"
+          "Comando B - para buscar grafo pelo nome\n"
+          "Comando X - para encerrar o programa\n")
     cmd = input("Insira o comando: ")
     
     if cmd.lower() == 'a':
-        nome = str(input("\nNome do grafo: "))
+        print()
         n = int(input("Insira o número de vértices: "))
-        Mat_Adj,e = fill(n)
-        grafo = [nome,n.e,Mat_Adj]
-        Grafos.append(grafo)
+        e = int(input("Insira o número de arestas: "))
+        Mat_Adj = fill(n,e)
+        save(n,e,Mat_Adj)
     
     elif cmd.lower() == 'b':
-        a = False
         key = str(input("\nInsira o nome do grafo: "))
-        for grafo in Grafos:
-            if key == str(grafo[0]):
-                printMat(graf[3],int(graf[1]))
-                a = True
-        if a:
-            break
-        print("\n\nGrafo não encontrado!\n\n")
+        file.seek(0)
+        dic = json.load(file)
+        try:
+            result = dic[key]
+            print()
+            for i in result[2]:
+                print(*i)
 
-    elif cmd.lower() == 'c':
+        except:
+            print("\n\nGrafo não encontrado!\n\n")
+
+    elif cmd.lower() == 'x':
         print("\nPrograma encerrado!")
-        #file.close()
-        lock = False
-    
+        file.close()
+
     else:
         print("\n\nComando Inválido!\n\n")
