@@ -1,1 +1,72 @@
-lista2.txt
+Ex 1)
+
+    a) O processador 2 tem o melhor desempenho com 2.5 instruções por segundo
+
+    n1 = 3/1.5 -> n1 = 2
+
+    n2 = 2.5/1 -> n2 = 2.5
+
+    n3 = 4/2.2 -> n3 = 1.82
+
+
+    b) Em 10 segundos:
+        O processador 1 executa: 20 * (10 ** 9) instruções
+                                30 * (10 ** 9) ciclos
+
+        O processador 2 executa: 25 * (10 ** 9) instruções
+                                25 * (10 ** 9) ciclos
+
+        O processador 3 executa: 18,18 * (10 ** 9) instruções
+                                40 * (10 ** 9) ciclos
+
+    c) Para reduzir o tempo de execução em 30%, com aumento de 20% no CPI, 
+        precisamos de um aumento aproximado de 71,4% da frequência do clock.
+
+
+
+Ex2)
+
+    O processador 2 possui tempo de execução de aproximadamente 0,67 milisegundos.
+    Enquando o processador 1 possui tempo de execução de 1,04 milisegundos.
+    Logo, a implementação do processador 2 tem melhor desempenho.
+
+    a)  Processador 1 -> CPI médio = 2,6 CPIs
+        Processador 2 -> CPI médio = 2 CPIs
+
+    b)  O processador 1 requer 2,6 milhões de ciclos
+        O processador 2 requer 2 milhões de ciclos
+
+
+Ex3)
+
+    a)  Tempos de execução:
+            t1 = 13.46 s
+            t2 = 7.05  s
+            t4 = 3.845 s
+            t8 = 2.243 s
+
+        Aceleração em relação a 1 núcleo:
+            a2 = 1.909
+            a4 = 3.500
+            a8 = 6.002
+
+    b)  O tempo de execução após a mudança do CDI:
+            t1 = 15.31 s
+            t2 = 7.976 s
+            t4 = 4.307 s
+            t8 = 2.474 s
+
+    c)  Para igualar o desempenho, o CPI deveria ser aproximadamente: 1.48 CPIs
+
+
+Ex4)
+
+    a)  Não há ganho no CPI das instruções do tipo FP que gere o resultado esperado,
+        visto que a soma dos tempos dos outros tipos ultrapassam 50% do tempo total
+
+    
+    b)  Para obter um tempo de execução duas vezes mais rápido, o CPI das instruções
+        do tipo L/S deve ser 20% do original, ou seja, 0,8 CPIs
+
+    c)  Com tais alterações dos CPIs, o tempo sofre redução de 33% passando de 256 milisegundos
+        para 171 milisegundos.
