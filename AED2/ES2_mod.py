@@ -14,10 +14,23 @@ def matriz_torneio(n):
         matriz_torneio()
         
         if (o%2) == 0:
-            pass
+            quadrante = o
 
         else:
-            pass
+            quadrante = o+1
+
+        for i in range(1,o+1):
+            for j in range(1,o+1):
+                mat[i+o][j] = mat[i][j] + o
+            
+        for i in range(o+1,n+1):
+            for j in range(o+1,n+1):
+                pass
+
+        #preenche forçado
+
+        if (o%2) != 0:
+            #move 
 
 
 n = int(input("Insira o número de times: "))
