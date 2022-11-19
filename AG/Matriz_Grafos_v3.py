@@ -9,7 +9,7 @@ def mat(size):
 
 def fill(n,e):
     vet = mat(n)
-    print("\nOs vertices estão conectados?  "
+    print("\nOs vertices estão conectados?"
           "\n1 - para SIM/ 0 - para NÃO)\n")
         
     for j in range(0,n):
@@ -28,7 +28,7 @@ def save(v,a,mat):
     nome = str(input("\nNome do grafo: "))
     file.seek(0)
     dic = json.load(file)
-    dic.update({nome: (v,a,mat)})
+    dic.update({nome: (v,a,mat,tipo)})
     file.seek(0)
     file.write(json.dumps(dic))
     file.truncate()
