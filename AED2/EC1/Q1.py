@@ -4,7 +4,7 @@ def mod1(vet,i,f):
         aux = i
 
         for j in range(i+1,f+1):
-            if vet[j] <= pivot:
+            if vet[j] == pivot:
                 aux += 1
                 vet[j], vet[aux] = vet[aux], vet[j]
         
