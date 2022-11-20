@@ -24,7 +24,7 @@ def fill(n,e):
             if e == 0:
                 return vet
 
-def save(v,a,mat):
+def save(v,a,mat,tipo):
     nome = str(input("\nNome do grafo: "))
     file.seek(0)
     dic = json.load(file)
@@ -83,7 +83,7 @@ while not file.closed:
                     for j in range(i+1,n):
                         Mat_Adj[i][j] = 1
                         Mat_Adj[j][i] = 1
-                save(n,e,Mat_Adj)
+                save(n,e,Mat_Adj,"Grafo completo")
             
             else:
                 print("\nO número de vértices deve ser positivo!\n")
@@ -101,7 +101,7 @@ while not file.closed:
                     for j in range(m1,m1+m2):
                         Mat_Adj[i][j] = 1
                         Mat_Adj[j][i] = 1
-                save(m1+m2,e,Mat_Adj)
+                save(m1+m2,e,Mat_Adj,"Grafo bipartido completo")
             
             else:
                 print("\nO número de vértices das partes deve ser positivo!\n")
@@ -117,7 +117,7 @@ while not file.closed:
                 if i != (a-1):
                     Mat_Adj[a-1][i] = 1
                     Mat_Adj[i][a-1] = 1
-            save(n,e,Mat_Adj)
+            save(n,e,Mat_Adj,"Grafo estrela")
         
         elif cmd2 == 4:
             #caminho
@@ -130,7 +130,7 @@ while not file.closed:
                 for i in range(n-1):
                     Mat_Adj[i][i+1] = 1
                     Mat_Adj[i+1][i] = 1
-                save(n,e,Mat_Adj)
+                save(n,e,Mat_Adj,"Grafo caminho")
 
             else:
                 print("\nO número de vértices deve ser maior que 1!")
@@ -150,7 +150,7 @@ while not file.closed:
                 Mat_Adj[n-1][0] = 1
                 Mat_Adj[0][n-1] = 1
                 
-                save(n,e,Mat_Adj)
+                save(n,e,Mat_Adj,"Grafo ciclo")
             
             else:
                 print("\nO número de vértices deve ser maior que 2!\n")
@@ -178,7 +178,7 @@ while not file.closed:
                 Mat_Adj[a-2][a] = 1
                         
             
-            save(n,e,Mat_Adj)
+            save(n,e,Mat_Adj,"Grafo roda")
 
         elif cmd2 == 7:
             #cubo
@@ -186,9 +186,13 @@ while not file.closed:
             n = 2 ** g
             e = n * (2 ** (n-1))
             Mat_Adj = mat(n)
+            
+            for i in range(-n,0):
+                for x in range(g):
+                    k = 2 ** x
+                    Mat_Adj[i][i+k] = 1
 
-            for i in range(n):
-                pass
+            save(n,e,Mat_Adj,"Grafo %d-cubo"%n)
         
         else:
             print("\nComando inválido!\n")
