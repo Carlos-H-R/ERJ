@@ -34,7 +34,7 @@ def save(v,a,mat,tipo):
     file.truncate()
 
 
-file = open('Grafos.json',"w+")
+file = open('Grafos.json',"r+")
 
 if not file.readline():
     file.write('{}')
@@ -186,7 +186,9 @@ while not file.closed:
             n = 2 ** g
             e = n * (2 ** (n-1))
             Mat_Adj = mat(n)
-            
+
+            #Escolher um vertice e escolhe os outro que estão ligados a ele
+
             memo = range(n)
             aux = g
             while len(memo)>0:
