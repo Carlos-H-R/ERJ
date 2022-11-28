@@ -1,5 +1,7 @@
 #Questão 1
 
+"""Falta estabelecer os limites da entrada e implementar a versão para o Bottom-Up"""
+
 def soma(vet):
     soma = 0
     for i in vet:
@@ -49,29 +51,43 @@ def subConjBU(con, x):
 
 key = True
 while key:
-    print("\n1 - cria conjunto aleatório    "
-          "\n2 - cria conjunto manualmente  "
-          "\n3 - consulta com Top-Down      "
-          "\n4 - consulta com Bottom-Up     "
+    print("\n1 - cria/atualiza conjunto     "
+          "\n2 - consulta com Top-Down      "
+          "\n3 - consulta com Bottom-Up     "
           "\n0 - encerra o programa       \n")
 
-    key = input("--> ")
+    key = int(input("--> "))
 
     if (key == 0):
         print("\nPrograma Encerrado!\n")
         key = False
 
+
     elif (key == 1):
-        pass
+        print("\nInsira o conjunto separando elementos com espaço\n")
+        conjunto = list(map(int,input("--> ").split()))
 
+    
     elif (key == 2):
-        pass
+        try:
+            a = int(input("\nInsira o valor da soma buscada: "))
+            
+            if subConTD(conjunto,a):
+                print("\nExiste subconjunto cuja soma é %d \n"%a)
 
+            else:
+                print("\nNão há subconjunto com essa soma\n")
+
+        except ValueError:
+            print("\nO valor da soma deve ser um número inteiro!\n")
+
+        except NameError:
+            print("\nNenhum conjunto foi criado!\n")
+
+    
     elif (key == 3):
-        pass
+        print("\nNão implementada ainda!\n")
 
-    elif (key == 4):
-        pass
-
+    
     else:
         print("\nEntrada Inválida!\n")
