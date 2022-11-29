@@ -1,12 +1,12 @@
 #Questão 1
 
-"""Falta estabelecer os limites da entrada e implementar a versão para o Bottom-Up"""
+"""Falta implementar a versão para o Bottom-Up"""
 
-def soma(vet):
-    soma = 0
-    for i in vet:
-        soma += i
-    return soma
+# def soma(vet):
+#     soma = 0
+#     for i in vet:
+#         soma += i
+#     return soma
 
 #Utilizando o Top-Down
 def subConTD(con, x):
@@ -37,17 +37,29 @@ def subConTD(con, x):
 
     return False
             
-
+"""
 #Utilizando o Bottom-Up
+def coisa(vet, x):
+    if x == 0:
+        vet.append([])
+        return vet
+
+    else:
+        for i in x:
+            aux = []
+            cop = vet.copy()
+
+            
+
+
 def subConjBU(con, x):
     sum = 0
-    part = [[]]
+    part = []
     
-    for i in con:
-        pass
+    part = coisa(part)
 
     print(part)
-
+"""
 
 key = True
 while key:
@@ -66,6 +78,10 @@ while key:
     elif (key == 1):
         print("\nInsira o conjunto separando elementos com espaço\n")
         conjunto = list(map(int,input("--> ").split()))
+
+        if (len(conjunto)>20):
+            print("\nConjunto com mais elementos que o permitido!\n")
+            del(conjunto)
 
     
     elif (key == 2):
