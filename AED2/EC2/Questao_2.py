@@ -24,7 +24,7 @@ def verify(i, sample, padrao):
 key = True
 while key:
     print("\n1 - Checar mensagem"
-          "\n2 - Encerra")
+          "\n0 - Encerra")
 
     try:
         key = int(input("--> "))
@@ -44,9 +44,8 @@ while key:
             except NameError or ValueError:
                 print("\nO campo número de vezes deve conter um número inteiro!\n")
 
-        elif (key == 2):
+        elif (key == 0):
             print("\nEncerrado!\n")
-            key = False
 
         else:
             print("\nComando Inválido!\n")

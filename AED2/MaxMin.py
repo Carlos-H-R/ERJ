@@ -1,3 +1,17 @@
+"""In the maxmin argorithm the conditionnal tests will verify if the
+elements observed are (the same, neighbours or diferent)
+
+In case they are the same the algorithm will return the corresponding
+element in both positions (max and min)
+
+In case they are neighbours, will return which is greater and which 
+is smaller.
+
+In case they are none of the above, will compare the first end the middle, the (middle + 1) and the end:
+
+The recurcion occurs in the third conditional test."""
+
+
 from random import randint as rdi
 
 def maxmin(e,d):
