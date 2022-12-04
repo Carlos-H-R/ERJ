@@ -1,5 +1,8 @@
 #Questão 2
 
+#ALgoritmo apenas verifica se a mensagem foi excrita por Alice ou pelo irmão
+#As mensagens e resultados não são guardados
+
 def verify(i, sample, padrao):
     check = 0
     first = padrao[0]
