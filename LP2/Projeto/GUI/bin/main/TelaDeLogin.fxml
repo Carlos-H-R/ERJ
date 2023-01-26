@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="98.0" layoutY="157.0" prefHeight="43.0" prefWidth="113.0" text="Senha">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button layoutX="78.0" layoutY="276.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="LIMPAR">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="251.0" layoutY="277.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="ENTRAR">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="98.0" layoutY="60.0" prefHeight="38.0" prefWidth="90.0" text="Login">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField layoutX="96.0" layoutY="200.0" prefHeight="38.0" prefWidth="285.0" />
+      <TextField layoutX="96.0" layoutY="103.0" prefHeight="38.0" prefWidth="285.0" />
+   </children>
+</Pane>

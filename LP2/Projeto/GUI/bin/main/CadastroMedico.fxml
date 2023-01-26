@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField alignment="CENTER" layoutX="40.0" layoutY="69.0" prefHeight="38.0" prefWidth="285.0" />
+      <TextField alignment="CENTER" layoutX="40.0" layoutY="150.0" prefHeight="38.0" prefWidth="285.0" />
+      <TextField alignment="CENTER" layoutX="40.0" layoutY="231.0" prefHeight="38.0" prefWidth="285.0" />
+      <TextField alignment="CENTER" layoutX="40.0" layoutY="407.0" prefHeight="38.0" prefWidth="285.0" />
+      <Label layoutX="40.0" layoutY="26.0" prefHeight="38.0" prefWidth="90.0" text="CRM">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button layoutX="191.0" layoutY="504.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="ENVIAR">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="20.0" layoutY="504.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="LIMPAR">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="40.0" layoutY="272.0" prefHeight="43.0" prefWidth="237.0" text="ESPECIALIDADE">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="107.0" prefHeight="38.0" prefWidth="90.0" text="NOME">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="188.0" prefHeight="38.0" prefWidth="90.0" text="CPF">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="364.0" prefHeight="43.0" prefWidth="152.0" text="TELEFONE">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <SplitMenuButton layoutX="36.0" layoutY="315.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="272.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Cardiologista" />
+          <MenuItem mnemonicParsing="false" text="Clínico geral" />
+            <MenuItem mnemonicParsing="false" text="Dermatologista" />
+            <MenuItem mnemonicParsing="false" text="Endocrinologista" />
+            <MenuItem mnemonicParsing="false" text="Neurologista" />
+        </items>
+      </SplitMenuButton>
+   </children>
+</Pane>
