@@ -4,11 +4,21 @@ public class Medico {
     private String nome;
     private long crm;
     private long cpf;
-
-    public Medico(String nome, long crm, long cpf) {
+    private long telefone;
+    
+    public Medico(String nome, long crm, long cpf, long telefone) {
         this.nome = nome;
         this.crm = crm;
         this.cpf = cpf;
+        this.telefone = telefone;
+    }
+
+    public long getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(long telefone) {
+        this.telefone = telefone;
     }
 
     public String getNome() {

@@ -1,4 +1,4 @@
-package panels;
+package view;
 
 public class MedicoGUI {
     
