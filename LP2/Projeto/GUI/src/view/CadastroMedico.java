@@ -5,10 +5,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class CadastroUsuario {
+public class CadastroMedico {
     private Stage cadastro;
 
-    public CadastroUsuario() throws Exception{
+    public CadastroMedico() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("CadastroMedico.fxml"));
 
         cadastro = new Stage();

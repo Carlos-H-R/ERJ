@@ -2,7 +2,6 @@ package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import view.CadastroUsuario;
 import view.LoginGUI;
 
 public class App extends Application{
@@ -13,8 +12,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        LoginGUI login = new LoginGUI();
-        CadastroUsuario cadastroUsuario = new CadastroUsuario();
+        new LoginGUI();
     }
 
 }
