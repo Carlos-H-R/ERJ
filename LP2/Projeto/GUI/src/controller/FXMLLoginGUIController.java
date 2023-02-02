@@ -14,6 +14,6 @@ public class FXMLLoginGUIController {
     }
 
     @FXML protected void handleEntrarButtonAction(ActionEvent event){
-
+        
     }
 }

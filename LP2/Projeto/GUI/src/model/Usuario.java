@@ -1,10 +1,12 @@
 package model;
 
 public class Usuario {
+    protected String nome;
     protected String usuario;
     protected String senha;
-   
-    public Usuario(String usuario, String senha) {
+    
+    public Usuario(String nome, String usuario, String senha) {
+        this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
     }
