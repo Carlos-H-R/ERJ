@@ -11,17 +11,30 @@ public class FXMLCadastroUsuarioController {
     @FXML protected TextField senha;
     @FXML protected TextField confimaSenha;
 
-    @FXML protected void handleLimparButtonAction(ActionEvent event){
+    protected void limparCampos(){
         nome.setText(null);
         login.setText(null);
         senha.setText(null);
         confimaSenha.setText(null);
     }
 
+    @FXML protected void handleLimparButtonAction(ActionEvent event){
+        limparCampos();
+    }
+
     @FXML protected void handleCadastrarButtonAction(ActionEvent event){
         if (senha.equals(confimaSenha)){
-            Usuario novoUsuario = new Usuario(nome.getText(), login.getText(), senha.getText());
+            // Usuario novoUsuario = 
+            new Usuario(nome.getText(), login.getText(), senha.getText());
 
+            // Guarda novo usuario na base de dados
+
+            limparCampos();
+            
+            // Fecha a janela
+        }
+        else{
+            // Expoe mensagem informando senha incorreta
         }
     }
 }

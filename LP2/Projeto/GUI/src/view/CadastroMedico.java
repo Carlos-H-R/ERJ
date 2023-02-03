@@ -11,10 +11,9 @@ public class CadastroMedico {
     public CadastroMedico() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("CadastroMedico.fxml"));
 
-        cadastro = new Stage();
-
         Scene scene = new Scene(root);
-
+        
+        cadastro = new Stage();
         cadastro.setScene(scene);
         cadastro.show();
     }

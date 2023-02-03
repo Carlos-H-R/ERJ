@@ -20,7 +20,7 @@
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Button layoutX="191.0" layoutY="504.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="ENVIAR">
+      <Button layoutX="191.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleEnviarButtonAction" prefHeight="43.0" prefWidth="152.0" text="ENVIAR">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

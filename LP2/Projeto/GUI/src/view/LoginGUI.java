@@ -11,12 +11,11 @@ public class LoginGUI{
     public LoginGUI() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("./LoginGUI.fxml"));
 
-        login = new Stage();
-
         Scene scene = new Scene(root);
-
-        this.login.setScene(scene);
-        this.login.show();
+        
+        login = new Stage();
+        login.setScene(scene);
+        login.show();
     }
 
 }

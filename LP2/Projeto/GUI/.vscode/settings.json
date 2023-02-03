@@ -10,7 +10,8 @@
         "d:\\CODE\\JAVA\\Libs\\javafx-sdk-19.0.2.1\\lib\\javafx.media.jar",
         "d:\\CODE\\JAVA\\Libs\\javafx-sdk-19.0.2.1\\lib\\javafx.swing.jar",
         "d:\\CODE\\JAVA\\Libs\\javafx-sdk-19.0.2.1\\lib\\javafx.web.jar",
-        "d:\\CODE\\JAVA\\Libs\\javafx-sdk-19.0.2.1\\lib\\javafx-swt.jar"
+        "d:\\CODE\\JAVA\\Libs\\javafx-sdk-19.0.2.1\\lib\\javafx-swt.jar",
+        "d:\\CODE\\JAVA\\Libs\\json-simple-1.1.1.jar"
     ],
     "maven.view": "flat",
 }

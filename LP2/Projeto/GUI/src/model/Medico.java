@@ -13,8 +13,8 @@ public class Medico {
         this.telefone = telefone;
     }
 
-    public long getTelefone() {
-        return telefone;
+    public String getTelefone() {
+        return (Long.toString(telefone));
     }
 
     public void setTelefone(long telefone) {
@@ -29,16 +29,16 @@ public class Medico {
         this.nome = nome;
     }
 
-    public long getCrm() {
-        return crm;
+    public String getCrm() {
+        return (Long.toString(crm));
     }
 
     public void setCrm(long crm) {
         this.crm = crm;
     }
 
-    public long getCpf() {
-        return cpf;
+    public String getCpf() {
+        return (Long.toString(cpf));
     }
 
     public void setCpf(long cpf) {
