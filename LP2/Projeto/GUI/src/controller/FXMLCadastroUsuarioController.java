@@ -16,13 +16,6 @@ public class FXMLCadastroUsuarioController {
     @FXML protected Label messageBlank;
     @FXML protected Label messageNotEqual;
 
-    protected void limparCampos(){
-        nome.clear();
-        login.clear();
-        senha.clear();
-        confirmaSenha.clear();
-    }
-
     @FXML protected void handleLimparButtonAction(ActionEvent event){
         limparCampos();
     }
@@ -56,5 +49,12 @@ public class FXMLCadastroUsuarioController {
             messageNotEqual.setVisible(false);
             messageBlank.setVisible(true);
         }
+    }
+    
+    protected void limparCampos(){
+        nome.clear();
+        login.clear();
+        senha.clear();
+        confirmaSenha.clear();
     }
 }

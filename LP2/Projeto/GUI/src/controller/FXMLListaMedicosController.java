@@ -31,6 +31,11 @@ public class FXMLListaMedicosController implements Initializable{
 
     ObservableList<Medico> list = FXCollections.observableArrayList(new Medico());
     
+    
+    /** 
+     * @param location
+     * @param resources
+     */
     /*
      * Realiza a leitura da base de dados dos medicos e cria as celulas para acomodar os dados.
      */

@@ -10,15 +10,31 @@ public class Usuario {
         this.usuario = usuario;
         this.senha = senha;
     }
+    
+    /** 
+     * @return String
+     */
     public String getUsuario() {
         return usuario;
     }
+    
+    /** 
+     * @param usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+    
+    /** 
+     * @return String
+     */
     public String getSenha() {
         return senha;
     }
+    
+    /** 
+     * @param senha
+     */
     public void setSenha(String senha) {
         this.senha = senha;
     }

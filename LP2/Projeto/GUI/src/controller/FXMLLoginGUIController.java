@@ -21,6 +21,8 @@ public class FXMLLoginGUIController{
 
     @FXML protected void handleLimparButtonAction(ActionEvent event){
         limpaCampos();
+        messageBlank.setVisible(false);
+        messageInvalid.setVisible(false);
     }
     
     @FXML protected void handleEntrarButtonAction(ActionEvent event) throws Exception{
@@ -63,7 +65,6 @@ public class FXMLLoginGUIController{
     protected void limpaCampos(){
         login.clear();
         senha.clear();
-        messageBlank.setVisible(false);
-        messageInvalid.setVisible(false);
+        
     }
 }

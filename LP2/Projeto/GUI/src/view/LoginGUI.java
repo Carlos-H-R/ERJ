@@ -9,12 +9,12 @@ import javafx.stage.Stage;
  * Classe responsável por gerar a tela de login
  */
 public class LoginGUI{
-    public LoginGUI(Stage login) throws Exception {
+    public LoginGUI() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("./LoginGUI.fxml"));
 
         Scene scene = new Scene(root);
         
-        login = new Stage();
+        Stage login = new Stage();
         login.setScene(scene);
         login.show();
     }

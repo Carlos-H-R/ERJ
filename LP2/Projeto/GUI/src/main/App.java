@@ -5,16 +5,22 @@ import javafx.stage.Stage;
 import view.LoginGUI;
 
 public class App extends Application{
-    private static Stage stg;
-
+    
+    /** 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         Application.launch(args);
     }
 
+    
+    /** 
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
-        stg = stage;
-        stage.setResizable(false);
-        new LoginGUI(stg);
+        new LoginGUI();
     }
 }
