@@ -2,12 +2,10 @@ package main;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import view.CadastroMedico;
-import view.CadastroUsuario;
 import view.LoginGUI;
-import view.MedicoGUI;
 
 public class App extends Application{
+    private static Stage stg;
 
     public static void main(String[] args) throws Exception {
         Application.launch(args);
@@ -15,10 +13,8 @@ public class App extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        new LoginGUI();
-        new CadastroMedico();
-        new CadastroUsuario();
-        new MedicoGUI();
+        stg = stage;
+        stage.setResizable(false);
+        new LoginGUI(stg);
     }
-
 }

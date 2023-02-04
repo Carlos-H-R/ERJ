@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLoginGUIController">
+<Pane fx:id="loginPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="356.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLoginGUIController">
    <children>
       <AnchorPane layoutX="96.0" layoutY="157.0">
          <children>
@@ -17,7 +17,7 @@
                   <Font name="System Bold" size="29.0" />
                </font>
             </Label>
-            <PasswordField layoutX="2.0" layoutY="43.0" prefHeight="38.0" prefWidth="278.0" />
+            <PasswordField fx:id="senha" layoutX="2.0" layoutY="43.0" prefHeight="38.0" prefWidth="278.0" />
          </children>
       </AnchorPane>
       <Button layoutX="78.0" layoutY="276.0" mnemonicParsing="false" onAction="#handleLimparButtonAction" prefHeight="43.0" prefWidth="152.0" text="LIMPAR">
@@ -40,5 +40,7 @@
             <TextField fx:id="login" layoutY="43.0" prefHeight="38.0" prefWidth="285.0" />
          </children>
       </AnchorPane>
+      <Label fx:id="messageBlank" alignment="CENTER" layoutX="122.0" layoutY="35.0" prefHeight="19.0" prefWidth="228.0" text="Campos em Branco!" textFill="#f20303" visible="false" />
+      <Label fx:id="messageInvalid" alignment="CENTER" layoutX="122.0" layoutY="35.0" prefHeight="19.0" prefWidth="228.0" text="Login ou senha inválidos" textFill="#f20303" visible="false" />
    </children>
 </Pane>

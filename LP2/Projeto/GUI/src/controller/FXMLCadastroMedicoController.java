@@ -37,9 +37,9 @@ public class FXMLCadastroMedicoController {
         else{
             Medico novoMedico = new Medico(
                 nome.getText(), 
-                Long.parseLong(crm.getText()), 
-                Long.parseLong(cpf.getText()),
-                Long.parseLong(telefone.getText()));
+                crm.getText(), 
+                cpf.getText(),
+                telefone.getText());
 
             new DadosMedicos(novoMedico);
             limparCampos();

@@ -6,9 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class LoginGUI{
-    private Stage login;
-
-    public LoginGUI() throws Exception {
+    public LoginGUI(Stage login) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("./LoginGUI.fxml"));
 
         Scene scene = new Scene(root);

@@ -1,45 +1,80 @@
 package controller;
 
 import java.io.FileReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import model.Medico;
+import view.CadastroMedico;
+import view.MedicoGUI;
 
-@SuppressWarnings("unchecked")
-public class FXMLListaMedicosController {
-    @FXML protected TableColumn medico;
-    @FXML protected TableColumn crm;
-    @FXML protected TableColumn cpf;
-    @FXML protected TableColumn telefone;
+public class FXMLListaMedicosController implements Initializable{
+    @FXML protected TableView<Medico> table;
+    @FXML protected TableColumn<Medico,String> medico;
+    @FXML protected TableColumn<Medico,String> crm;
+    @FXML protected TableColumn<Medico,String> cpf;
+    @FXML protected TableColumn<Medico,String> telefone;
 
-    @FXML protected void handleListUpdate(){
+    ObservableList<Medico> list = FXCollections.observableArrayList(new Medico());
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(location);
+        System.out.println(resources);
+
+        medico.setCellValueFactory(new PropertyValueFactory<Medico,String>("nome"));
+        crm.setCellValueFactory(new PropertyValueFactory<Medico,String>("crm"));
+        cpf.setCellValueFactory(new PropertyValueFactory<Medico,String>("cpf"));
+        telefone.setCellValueFactory(new PropertyValueFactory<Medico,String>("telefone"));
+
         try {
             FileReader fileReader = new FileReader("DadosMedicos.json");
-            
             JSONParser jsonParser = new JSONParser();
-            Object obj = jsonParser.parse(fileReader);
 
-            JSONObject baseDeDados = (JSONObject) obj;
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(fileReader);
 
-            baseDeDados.keySet().forEach(keyStr ->
-            {
-                JSONObject keyvalue = (JSONObject) baseDeDados.get(keyStr);
-                medico.setText((String) keyvalue.get("nome"));
-                cpf.setText((String) keyvalue.get("cpf"));
-                crm.setText((String) keyvalue.get("crm"));;
-                telefone.setText((String) keyvalue.get("telefone"));;
-            });
-            
-        } catch (Exception e) {
-        
+            ArrayList<Medico> arrayList = new ArrayList<Medico>(0);
+
+            var test = jsonObject.keySet();
+            for (Object i : test){
+                JSONObject data;
+                data = (JSONObject) jsonObject.get(i.toString());
+                arrayList.add(new Medico(data.get("nome").toString(), data.get("crm").toString(), data.get("cpf").toString(), data.get("telefone").toString()));
+            }
+
+            ObservableList<Medico> dados = FXCollections.observableArrayList(arrayList);
+
+            table.setItems(dados);
+            table.refresh();
+
+        }catch(Exception e) {
+            System.out.println(e);
         }
     }
 
-    @FXML protected void handleNovoButtonAction(ActionEvent event){
-
+    @FXML protected void handleAtualizar(ActionEvent event) throws Exception{
+        new MedicoGUI();
+        
+        Stage stage = (Stage) table.getScene().getWindow();
+        stage.close();
     }
+    
+    @FXML protected void handleCadastrar(ActionEvent event) throws Exception{
+        new CadastroMedico();
+    }
+
 }

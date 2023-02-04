@@ -4,16 +4,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.App;
 
-public class CadastroMedico {
-    private Stage cadastro;
-
+public class CadastroMedico extends App{
     public CadastroMedico() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("CadastroMedico.fxml"));
 
         Scene scene = new Scene(root);
         
-        cadastro = new Stage();
+        Stage cadastro = new Stage();
         cadastro.setScene(scene);
         cadastro.show();
     }

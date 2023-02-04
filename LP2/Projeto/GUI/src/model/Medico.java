@@ -2,11 +2,18 @@ package model;
 
 public class Medico {
     private String nome;
-    private long crm;
-    private long cpf;
-    private long telefone;
+    private String crm;
+    private String cpf;
+    private String telefone;
+
+    public Medico(){}
     
-    public Medico(String nome, long crm, long cpf, long telefone) {
+    @Override
+    public String toString() {
+        return "Medico [nome=" + nome + ", crm=" + crm + ", cpf=" + cpf + ", telefone=" + telefone + "]";
+    }
+
+    public Medico(String nome, String crm, String cpf, String telefone) {
         this.nome = nome;
         this.crm = crm;
         this.cpf = cpf;
@@ -14,10 +21,10 @@ public class Medico {
     }
 
     public String getTelefone() {
-        return (Long.toString(telefone));
+        return (telefone);
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -30,18 +37,18 @@ public class Medico {
     }
 
     public String getCrm() {
-        return (Long.toString(crm));
+        return crm;
     }
 
-    public void setCrm(long crm) {
+    public void setCrm(String crm) {
         this.crm = crm;
     }
 
     public String getCpf() {
-        return (Long.toString(cpf));
+        return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     

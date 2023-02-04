@@ -6,16 +6,25 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "main.App",
+            "projectName": "GUI_82317ff0",
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-19.0.2.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-19.0.2.1/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "main.App",
-            "projectName": "GUI_82317ff0",
+            "projectName": "GUI",
             "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-19.0.2.1/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
