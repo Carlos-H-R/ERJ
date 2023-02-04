@@ -1,0 +1,9 @@
+ITEM A SEREM CORRIGIDOS PARA UMA VERSÃO COMPLETA DO PROJETO:
+
+- Implementar avisos na tela de cadastro de médico
+- Implementar base de dados para autenticação
+- Implementar opção para apagar oos dados de um médico
+- Implementar classe e tela para gerenciar os usuários
+- Atualização automática da lista de dados dos médicos
+- Corrigir problema no campo Especialidade
+- Otimizar a segurança das classes e dos dados

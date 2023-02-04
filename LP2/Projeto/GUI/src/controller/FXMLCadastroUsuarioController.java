@@ -18,6 +18,8 @@ public class FXMLCadastroUsuarioController {
 
     @FXML protected void handleLimparButtonAction(ActionEvent event){
         limparCampos();
+        messageNotEqual.setVisible(false);
+        messageBlank.setVisible(false);
     }
 
     /*
