@@ -13,13 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Medico;
 import view.CadastroMedico;
+import view.CadastroUsuario;
 import view.MedicoGUI;
 
 public class FXMLListaMedicosController implements Initializable{
@@ -31,6 +31,9 @@ public class FXMLListaMedicosController implements Initializable{
 
     ObservableList<Medico> list = FXCollections.observableArrayList(new Medico());
     
+    /*
+     * Realiza a leitura da base de dados dos medicos e cria as celulas para acomodar os dados.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(location);
@@ -66,6 +69,9 @@ public class FXMLListaMedicosController implements Initializable{
         }
     }
 
+    /*
+     * Reinicia a tela e atualiza os dados.
+     */
     @FXML protected void handleAtualizar(ActionEvent event) throws Exception{
         new MedicoGUI();
         
@@ -73,8 +79,18 @@ public class FXMLListaMedicosController implements Initializable{
         stage.close();
     }
     
+    /*
+     * Gera janela para cadastrar novo medico
+     */
     @FXML protected void handleCadastrar(ActionEvent event) throws Exception{
         new CadastroMedico();
+    }
+
+    /*
+     * Gera janela para cadastrar novo usuario
+     */
+    @FXML protected void handleCadastraUsuario() throws Exception{
+        new CadastroUsuario();
     }
 
 }

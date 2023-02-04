@@ -7,11 +7,6 @@ public class Medico {
     private String telefone;
 
     public Medico(){}
-    
-    @Override
-    public String toString() {
-        return "Medico [nome=" + nome + ", crm=" + crm + ", cpf=" + cpf + ", telefone=" + telefone + "]";
-    }
 
     public Medico(String nome, String crm, String cpf, String telefone) {
         this.nome = nome;

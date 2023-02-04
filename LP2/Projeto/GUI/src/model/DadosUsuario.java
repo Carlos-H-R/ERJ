@@ -9,6 +9,10 @@ import org.json.simple.parser.JSONParser;
 
 public class DadosUsuario{
     
+    /*
+     * Recebe um usuário, convertendo seu dados em um objeto Json e incluindo na base de dados
+     * Pasta Defaut para base de dados "DadosUsuario.json"
+     */
     @SuppressWarnings("unchecked")
     public DadosUsuario(Usuario novoUsuario){
         HashMap<String,String> dados = new HashMap<String,String>();

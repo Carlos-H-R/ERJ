@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.App;
 
+/*
+ * Classe responsável por gerar a tela de novo médico
+ */
 public class CadastroMedico extends App{
     public CadastroMedico() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("CadastroMedico.fxml"));

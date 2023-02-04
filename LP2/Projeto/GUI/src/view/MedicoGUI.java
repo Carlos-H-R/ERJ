@@ -5,6 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/*
+ * Classe responsável por gerar a tela de dados dos médicos
+ */
 public class MedicoGUI {
     private Stage medicos;
 

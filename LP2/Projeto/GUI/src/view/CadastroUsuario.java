@@ -5,6 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/*
+ * Classe responsável por gerar a tela de cadastro de novo usuário
+ */
 public class CadastroUsuario {
     private Stage cadastro;
 

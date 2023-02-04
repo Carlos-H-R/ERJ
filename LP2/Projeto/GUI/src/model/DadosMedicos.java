@@ -8,8 +8,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DadosMedicos {
-    Medico novoMedico;
     
+    /*
+     * Recebe um Medico, convertendo seu dados em um objeto Json e incluindo na base de dados
+     * Pasta Defaut para base de dados "DadosUsuario.json"
+     */
     @SuppressWarnings("unchecked")
     public DadosMedicos(Medico novoMedico){
         HashMap<String,String> dados = new HashMap<String,String>();

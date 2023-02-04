@@ -16,13 +16,6 @@ public class FXMLCadastroMedicoController {
     @FXML private TextField telefone;
 
 
-    protected void limparCampos(){
-        crm.setText(null);
-        nome.setText(null);
-        cpf.setText(null);
-        telefone.setText(null);
-    }
-
     @FXML protected void handleLimparButtonAction(ActionEvent event){
         limparCampos();
     }
@@ -44,5 +37,15 @@ public class FXMLCadastroMedicoController {
             new DadosMedicos(novoMedico);
             limparCampos();
         }
+    }
+    
+    /*
+     * Esvazia os campos
+     */
+    protected void limparCampos(){
+        crm.setText(null);
+        nome.setText(null);
+        cpf.setText(null);
+        telefone.setText(null);
     }
 }

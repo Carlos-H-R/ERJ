@@ -6,41 +6,51 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLCadastroUsuarioController">
    <children>
-      <Label layoutX="96.0" layoutY="196.0" prefHeight="43.0" prefWidth="113.0" text="Senha">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-      <Button fx:id="limparegistro" layoutX="76.0" layoutY="377.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="LIMPAR">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="registrarlogin" layoutX="249.0" layoutY="378.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="152.0" text="REGISTRAR">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label layoutX="94.0" layoutY="115.0" prefHeight="38.0" prefWidth="90.0" text="Login">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
-      <TextField fx:id="registersenha1" layoutX="94.0" layoutY="239.0" prefHeight="38.0" prefWidth="285.0" />
-      <TextField fx:id="registerimput" layoutX="94.0" layoutY="158.0" prefHeight="38.0" prefWidth="285.0" />
-      <TextField fx:id="registersenha2" layoutX="94.0" layoutY="314.0" prefHeight="38.0" prefWidth="285.0" />
-      <Label layoutX="96.0" layoutY="277.0" prefHeight="43.0" prefWidth="250.0" text="Confirma Senha">
-         <font>
-            <Font name="System Bold" size="29.0" />
-         </font>
-      </Label>
       <Label layoutX="94.0" layoutY="34.0" prefHeight="38.0" prefWidth="90.0" text="Nome">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="registerimput1" layoutX="94.0" layoutY="77.0" prefHeight="38.0" prefWidth="285.0" />
+      <TextField fx:id="nome" layoutX="94.0" layoutY="77.0" prefHeight="38.0" prefWidth="285.0" />
+      <Label layoutX="94.0" layoutY="115.0" prefHeight="38.0" prefWidth="90.0" text="Login">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="login" layoutX="94.0" layoutY="158.0" prefHeight="38.0" prefWidth="285.0" />
+      <Label layoutX="96.0" layoutY="196.0" prefHeight="43.0" prefWidth="113.0" text="Senha">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="senha" layoutX="94.0" layoutY="239.0" prefHeight="38.0" prefWidth="285.0" />
+      <Label layoutX="96.0" layoutY="277.0" prefHeight="43.0" prefWidth="250.0" text="Confirma Senha">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="confirmaSenha" layoutX="94.0" layoutY="314.0" prefHeight="38.0" prefWidth="285.0" />
+      <Button fx:id="limparegistro" layoutX="76.0" layoutY="377.0" mnemonicParsing="false" onAction="#handleLimparButtonAction" prefHeight="43.0" prefWidth="152.0" text="LIMPAR">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="Cadastrar" layoutX="249.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleCadastrarButtonAction" prefHeight="43.0" prefWidth="152.0" text="REGISTRAR">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="messageBlank" alignment="CENTER" layoutX="157.0" layoutY="453.0" prefHeight="31.0" prefWidth="188.0" text="Campos em Branco" textAlignment="CENTER" textFill="#f50b0b" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="messageNotEqual" alignment="CENTER" layoutX="53.0" layoutY="453.0" prefHeight="31.0" prefWidth="392.0" text="A confirmação de senha deve ser igual a senha" textAlignment="CENTER" textFill="#f50b0b" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

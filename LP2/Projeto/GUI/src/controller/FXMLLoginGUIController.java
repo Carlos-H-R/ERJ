@@ -24,13 +24,7 @@ public class FXMLLoginGUIController{
     }
     
     @FXML protected void handleEntrarButtonAction(ActionEvent event) throws Exception{
-        log_in();
-    }
-
-    /*
-     * Método que realiza a autenticação dos dados de entrada.
-     */
-    @FXML protected void log_in() throws Exception{
+        
         /*
          * Caso o login e senha estejam corretos abre a janela com os dados dos medico.
          */
@@ -45,7 +39,7 @@ public class FXMLLoginGUIController{
         }
 
         /*
-         * Apresenta mensegem indicando que os campos estão vazios.
+         * Apresenta mensagem indicando que os campos estão vazios.
          */
         else if (login.getText().isEmpty() && senha.getText().isEmpty()){
             messageInvalid.setVisible(false);
@@ -63,8 +57,13 @@ public class FXMLLoginGUIController{
         }
     }
     
+    /* 
+     * Limpa os campos 
+     */
     protected void limpaCampos(){
-        login.clear();;
+        login.clear();
         senha.clear();
+        messageBlank.setVisible(false);
+        messageInvalid.setVisible(false);
     }
 }

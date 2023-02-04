@@ -2,39 +2,59 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.DadosUsuario;
 import model.Usuario;
 
 public class FXMLCadastroUsuarioController {
     @FXML protected TextField nome;
     @FXML protected TextField login;
     @FXML protected TextField senha;
-    @FXML protected TextField confimaSenha;
+    @FXML protected TextField confirmaSenha;
+    @FXML protected Label messageBlank;
+    @FXML protected Label messageNotEqual;
 
     protected void limparCampos(){
-        nome.setText(null);
-        login.setText(null);
-        senha.setText(null);
-        confimaSenha.setText(null);
+        nome.clear();
+        login.clear();
+        senha.clear();
+        confirmaSenha.clear();
     }
 
     @FXML protected void handleLimparButtonAction(ActionEvent event){
         limparCampos();
     }
 
+    /*
+     * Verifica se os campos estão vazios.
+     * Verifica se o campo senha e condirma senha são iguais.
+     * Após as verificações positivas gera novo usuario
+     */
     @FXML protected void handleCadastrarButtonAction(ActionEvent event){
-        if (senha.equals(confimaSenha)){
-            // Usuario novoUsuario = 
-            new Usuario(nome.getText(), login.getText(), senha.getText());
-
-            // Guarda novo usuario na base de dados
-
-            limparCampos();
+        try {
+            if ((nome.getText().isEmpty()) || (login.getText().isEmpty()) || (senha.getText().isEmpty()) || (confirmaSenha.getText().isEmpty())){
+                messageNotEqual.setVisible(false);
+                messageBlank.setVisible(true);
+            }
             
-            // Fecha a janela
-        }
-        else{
-            // Expoe mensagem informando senha incorreta
+            else if (senha.equals(confirmaSenha)){
+                new DadosUsuario(new Usuario(nome.getText(), login.getText(), senha.getText()));
+    
+                limparCampos();
+                
+                Stage stage = (Stage) senha.getScene().getWindow();
+                stage.close();
+            }
+            else{
+                messageBlank.setVisible(false);
+                messageNotEqual.setVisible(true);
+            }
+        } catch (NullPointerException e) {
+            System.out.println(e);
+            messageNotEqual.setVisible(false);
+            messageBlank.setVisible(true);
         }
     }
 }
