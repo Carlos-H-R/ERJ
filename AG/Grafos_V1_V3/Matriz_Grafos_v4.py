@@ -1,5 +1,19 @@
 import json
 
+def bin_vector(num,lenth):
+    bin_vec = bin(num)
+    bin_vec = list(map(int,bin_vec[2:len(bin_vec)]))
+    bin_vec = [0]*(lenth-len(bin_vec)) + bin_vec
+    return bin_vec
+
+def bin_to_int(bin_vec):
+    integer = 0
+    bin_vec.reverse()
+    for i in range(len(bin_vec)):
+        if (bin_vec[i] == 1):
+            integer += 2**i
+    return integer
+
 def mat(size):
     v = []
     for i in range(size):
@@ -184,25 +198,22 @@ while not file.closed:
             #cubo
             g = int(input("Insira o grau do grafo: "))
             n = 2 ** g
-            e = n * (2 ** (n-1))
+            e = g * (2 ** (g-1))
             Mat_Adj = mat(n)
 
-            #Escolher um vertice e escolhe os outro que estão ligados a ele
+            for i in range(n):
+                node_b = bin_vector(i,g)
+                
+                for j in range(g):
+                    node_aux = node_b.copy()
+                    
+                    if (node_aux[j] == 1):
+                        node_aux[j] = 0
+                    else:
+                        node_aux[j] = 1
 
-            memo = range(n)
-            aux = g
-            while len(memo)>0:
-                aux2 = []
-                i = memo.pop(0)
-
-                for j in range(aux):
-                    Mat_Adj[i][memo[j]] = 1
-                    Mat_Adj[memo[j]][i] = 1
-
-                for j in range(aux):
-                    aux2.append(memo.pop())
-
-                aux -= 1
+                    node_aux = bin_to_int(node_aux)
+                    Mat_Adj[i][node_aux] = 1
 
             save(n,e,Mat_Adj,"Grafo %d-cubo"%g)
         

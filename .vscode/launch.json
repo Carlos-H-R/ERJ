@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/CODE/UERJ/DIA/Aula 4/Anagramas",
-      "program": "d:/CODE/UERJ/DIA/Aula 4/Anagramas/build/Debug/outDebug",
+      "cwd": "d:/CODE/UERJ/AG/Grafos_V1_V3",
+      "program": "d:/CODE/UERJ/AG/Grafos_V1_V3/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
