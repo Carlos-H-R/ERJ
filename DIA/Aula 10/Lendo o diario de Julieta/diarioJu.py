@@ -1,3 +1,4 @@
+# confere se a palavra está na frase
 def verifica(frase,palavra):
     f = len(frase)
     p = len(palavra)
@@ -8,28 +9,31 @@ def verifica(frase,palavra):
                 return True
     return False
 
+# aplica a chave na frase
 def decript(frase,chave):
-    desencriptado = []
+    desencriptado = ""
     for i in frase:
-        idx = (i+chave) % 26
-        desencriptado.append(idx)
+        x = ord(i) + chave
+
+        if x > 122:
+            x -= 26
+
+        desencriptado += chr(x)
     
     return desencriptado
 
-
+# realiza o teste com todas as chaves
 def testChave(frase,palavra):
     for j in range(1,27):
         aux = decript(frase,j)
         if (verifica(aux,palavra)):
-            trad = list(map(lambda x : chr(x+96),aux))
-            trad = "".join(trad)
-            return trad
+            return aux
 
 t = int(input())
 
 for i in range(t):
-    frase = list(map((lambda x : ord(x)-96),list(input())))
+    frase = str(input())
 
-    palavra = list(map((lambda x : ord(x)-96),list(input())))
+    palavra = str(input())
 
     print(testChave(frase,palavra))
