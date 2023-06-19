@@ -41,7 +41,7 @@ long long int hornerExpo(int base, int size, string digitos, int mod){
 }
 
 int main() {
-    int sizeBase, sizeExpo;
+    long long int sizeBase, sizeExpo;
     int t, mod;
     long long int base, result;
     string baseS, expoS;

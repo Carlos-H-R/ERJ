@@ -2,23 +2,21 @@ def modPow(base, expo, mod):
     if (expo == 0):
         return 1
     
-    if (expo == 1):
-        return (base % mod)
-    
     temp = modPow(base, expo//2, mod)
+    temp = ((temp * temp) % mod)
     if ((expo % 2) == 0):
-        return ((temp * temp) % mod)
+        return temp
     
     else:
-        return ((base * temp * temp) % mod)
+        return ((base * temp) % mod)
     
 
 t = int(input())
 
 for i in range(t):
-    a = float(input())
-    b = float(input())
-    m = float(input())
+    a = int(input())
+    b = int(input())
+    m = int(input())
 
     result = int(modPow(a,b,m))
     print(result)
