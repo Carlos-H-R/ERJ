@@ -42,6 +42,6 @@ int main(){
         
         for (int j=0; j<4*N; j++) (cin >> coordA[j]);
 
-        cout << coordJ[1]
+        cout << coordJ[1];
     }
 }
