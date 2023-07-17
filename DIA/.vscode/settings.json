@@ -5,6 +5,7 @@
         "cmath": "cpp",
         "complex": "cpp",
         "random": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "vector": "cpp"
     }
 }
