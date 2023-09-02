@@ -1,3 +1,5 @@
+import Data.List (intercalate)
+
 bandas :: [[String]]
 bandas = [   ["Gilberto Gil"]
             ,["Victor","Leo"]
@@ -15,5 +17,17 @@ musicas =   [("Aquele Abraco",        0, 100)
             ,("Nosso Sonho",          3, 150)
             ,("Quero te Encontrar",   3, 100)]
 
-result = map concat bandas
+nomes :: [String] -> String
+nomes = intercalate ","
 
+pprint :: Musica -> [String]
+pprint (nome,banda,durac) =
+    ["Nome: " ++ nome ++
+    "\nAutores: " ++ nomes (bandas!!banda) ++
+    "\nDuracao: " ++ show durac ++ "\n\n"]
+
+percorre = foldr f [] musicas where
+    f :: Musica -> [String] -> [String] 
+    f m l = l ++ pprint m
+
+main = putStr $ intercalate "\n" percorre
