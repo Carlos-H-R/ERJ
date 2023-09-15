@@ -22,3 +22,27 @@
 --select pc.nome
 --from participacao pt, profissional_cinema pc
 --where 
+
+
+
+-- FUNCTIONS 
+
+-- create function calculosMatematicosComParametros(x int, y int,out soma int, out subtracao int, out multiplicacao int, out divisao int) AS $$
+-- begin
+--   soma := x + y;
+--   subtracao := x - y;
+--   multiplicacao := x * y;
+--   divisao := x / y;
+-- end;
+-- $$ language plpgsql;
+
+Exercicio 1 (incompleto)
+
+create function SaveText(text1 varchar(30), text2 varchar(30))
+return varchar(60)
+as $$
+begin
+  text := text1 || text2;
+  return text
+end 
+$$ language plpgsql;
