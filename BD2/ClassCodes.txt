@@ -1,1 +1,24 @@
+%%sql
 
+--drop view movies;
+--
+--create view movies as
+--select f.nome
+--from filme f, participacao pt, profissional_cinema pc
+--where ano < 2000 and 
+--      f.cod_filme = pt.cod_filme and
+--      pc.nome = 'Kenneth Branagh' and
+--      pt.cod_papel = 1
+--order by f.nome;
+--
+--
+--select * from movies
+
+
+
+--drop view mt;
+--
+--create view mt as
+--select pc.nome
+--from participacao pt, profissional_cinema pc
+--where 
