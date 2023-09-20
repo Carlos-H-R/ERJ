@@ -70,7 +70,8 @@ ORDER BY ano;
 
 CREATE VIEW pre2000_kb AS
 SELECT f.nome
-FROM 
+FROM filme f
+WHERE 
 
 
 -- Exercicio 3
