@@ -86,5 +86,32 @@ WHERE ano < 2000 AND
       pt.cod_papel = 1
 ORDER BY f.nome;
 
+%%sql
+
+CREATE OR REPLACE FUNCTION class_cens()
+RETURNS TABLE(str_class VARCHAR) AS $$
+DECLARE
+  cursor_class CURSOR FOR
+  SELECT censura FROM filme;
+  num_class INTEGER;
+  str_class VARCHAR;
+BEGIN 
+  OPEN cursor_class;
+  LOOP
+    FETCH NEXT FROM cursor_class INTO num_class;
+    EXIT WHEN NOT FOUND;
+
+    IF (num_class < 16) THEN str_class := 'Infantil';
+    ELSIF (num_class >= 16 AND num_class < 18) THEN str_class := 'Adolescente';
+    ELSIF (num_class >= 18) THEN str_class := 'Adulto';
+    END IF;
+
+    RETURN QUERY VALUES (str_class);
+  END LOOP;
+  CLOSE cursor_class;
+END;$$ LANGUAGE plpgsql;
+
+select class_cens()
+
 select * from ken_bra_princ
 
