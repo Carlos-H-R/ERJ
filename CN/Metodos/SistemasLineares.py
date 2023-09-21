@@ -18,6 +18,7 @@ def cramer(A, b, min=1e-15):
         return x,status
     
     detA = np.linalg.det(A)
+    matrizes_aux = [detA]
     if (abs(detA) < min):
         print('Determinante da matriz inferior ao minimo!')
         x = np.NAN
@@ -34,28 +35,32 @@ def cramer(A, b, min=1e-15):
     for i in range(dim[0]):
         aux = A[:,i:i+1].copy()
         A[:,i:i+1] = b.copy()
+        matrizes_aux.append(np.linalg.det(A))
         x[i] = np.linalg.det(A)/detA
         A[:,i:i+1] = aux.copy()
     status = 0
-    return x,status
+    return x,status,matrizes_aux
 
 
 c1 = list(map(float, input().split()))
 c2 = list(map(float, input().split()))
 c3 = list(map(float, input().split()))
+c4 = list(map(float, input().split()))
 cb = list(map(float, input().split()))
 
 cbb = []
 for i in cb:
     cbb.append([i])
 
-A = np.array([c1,c2,c3])
+A = np.array([c1,c2,c3,c4])
 b = np.array(cbb)
 
+print(A)
 
 mindet=1e-10
 saida =cramer(A,b,mindet)
 print(saida[0])
+print(saida[2])
 
 
 # if saida[1]==0:
