@@ -1,4 +1,0 @@
-Pasta do repositório com o seguinte propósito:
-    - armazenar amostras de comandos utilizados em sala
-    - guardar bancos de dados e códigos SQL
-    - salvar trabalhos
