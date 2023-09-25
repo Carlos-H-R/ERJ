@@ -1,5 +1,13 @@
 import numpy as np
 
+def mult(X):
+    x = 1
+    for i in X:
+        for j in i:
+            x *= j
+    return x
+
+# Eliminacao Gaussiana Escalonada
 def egm(A,b,m,n):
     aux=[]
     Ab = A
@@ -15,13 +23,7 @@ def egm(A,b,m,n):
         aux.append(id_aux)
     return np.triu(Ab),bb,aux
 
-def mult(X):
-    x = 1
-    for i in X:
-        for j in i:
-            x *= j
-    return x
-
+# Eliminacao Gaussiana Matricial
 def e_gauss(A,b, m, n):
     mb = 1
     nb = n
@@ -52,13 +54,23 @@ b = np.array(b)
 
 print(A)
 print(b)
+
+# Solução com Eliminacao Gaussiana
 # [U, bu] = e_gauss(A,b,m,n)
+
+# Solucao com Eliminacao Guassiana Matricial
 [U,bu,aux] = egm(A,b,m,n)
+
 print('U =\n',U)
 print('bu=\n',bu)
 Y = np.linalg.solve(U,bu)
 print('Soma Y = ', sum(Y))
 print('Prod Y = ', mult(Y))
 
+
+# Projeta Matrizes Elementares
 for i in range(len(aux)):
     print('A%d =\n'%(i+1),aux[i])
+
+# Area de teste para o produto das Matrizes Elementares
+print(aux[0]@np.block([A,b]))
