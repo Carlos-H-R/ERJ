@@ -1,7 +1,4 @@
---local save of the VIEW exercice
-
 -- Exercicio 1
--- Visão com nome dos filmes lançados apos 2000, asc.
 
 DROP VIEW pos2000;
 
@@ -15,7 +12,6 @@ SELECT * FROM pos2000;
 
 
 -- Exercicio 2
--- Visão com nome dos filmes lançados antes 2000, asc, com Kenneth
 
 DROP VIEW ken_bra_a2000;
 
@@ -34,8 +30,6 @@ SELECT * FROM ken_bra_a2000;
 -- Exercicio 3
 DROP VIEW ken_bra_princ;
 
-DROP VIEW ken_bra_princ;
-
 CREATE VIEW ken_bra_princ AS
 SELECT f.nome
 FROM filme f, participacao pt, profissional_cinema pc
@@ -50,4 +44,12 @@ SELECT * FROM ken_bra_princ;
 
 
 -- Exercicio 4
-CREATE OR 
+CREATE VIEW all_papers AS
+SELECT nome
+FROM participacao part, profissional_cinema prof
+WHERE prof.cod_profissional_cinema = part.cod_profissional_cinema
+GROUP BY nome
+HAVING COUNT(DISTINCT cod_papel) > 3;
+
+SELECT * FROM all_papers;
+

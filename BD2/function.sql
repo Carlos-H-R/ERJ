@@ -1,9 +1,9 @@
 -- Exercício 1
 
-CREATE OR REPLACE FUNCTION join_txt(text1 varchar(30), text2 varchar(30))
-RETURNS varchar(60) AS $$
+CREATE OR REPLACE FUNCTION join_txt(text1 VARCHAR(30), text2 VARCHAR(30))
+RETURNS VARCHAR(60) AS $$
 DECLARE
-  txt varchar(60);
+  txt VARCHAR(60);
 BEGIN
   txt := text1 || text2;
   RETURN txt;
@@ -13,10 +13,11 @@ $$ LANGUAGE plpgsql;
 SELECT SaveText('Olá.','Tudo Bem?');
 
 
+
 -- Exercício 2
 
-CREATE OR REPLACE FUNCTION origin_movie(cod integer)
-RETURNS TABLE(pt varchar(100), en varchar(100)) AS 
+CREATE OR REPLACE FUNCTION origin_movie(cod INTEGER)
+RETURNS TABLE(pt VARCHAR(100), en VARCHAR(100)) AS 
 $$
 BEGIN
   RETURN QUERY 
@@ -27,16 +28,17 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-select origin_movie(15);
+SELECT origin_movie(15);
+
 
 
 -- Exercício 3
 
-CREATE OR REPLACE FUNCTION odd_even(valor int)
-RETURNS varchar(10) AS
+CREATE OR REPLACE FUNCTION odd_even(valor INTEGER)
+RETURNS VARCHAR(10) AS
 $$
 DECLARE
-  result varchar(10);
+  result VARCHAR(10);
 BEGIN
   IF (valor % 2) = 0 
   THEN result := 'Eh par!';
@@ -51,14 +53,15 @@ $$ LANGUAGE plpgsql;
 SELECT odd_even(16);
 
 
+
 -- Exercício 4
 
-CREATE OR REPLACE FUNCTION fact(valor int)
-RETURNS integer AS
+CREATE OR REPLACE FUNCTION fact(valor INTEGER)
+RETURNS INTEGER AS
 $$
 DECLARE 
-  n integer;
-  p integer;
+  n INTEGER;
+  p INTEGER;
 BEGIN
   n := valor;
   p := n - 1;
@@ -74,10 +77,11 @@ $$ plpgsql;
 SELECT fact(4);
 
 
+
 -- Exercício 5
 
-CREATE OR REPLACE FUNCTION check_disp(a integer, cens integer)
-RETURNS TABLE(disp bigint) AS
+CREATE OR REPLACE FUNCTION check_disp(a INTEGER, cens INTEGER)
+RETURNS TABLE(disp BIGINT) AS
 $$
 BEGIN
   RETURN QUERY SELECT COUNT(*) FROM filme f

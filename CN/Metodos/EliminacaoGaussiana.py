@@ -25,8 +25,6 @@ def egm(A,b,m,n):
 
 # Eliminacao Gaussiana Matricial
 def e_gauss(A,b, m, n):
-    mb = 1
-    nb = n
     Ab = np.block([A,b])
     for i in range(1,m):
         for j in range(i,m):
@@ -74,4 +72,6 @@ for i in range(len(aux)):
     print('A%d =\n'%(i+1),aux[i])
 
 # Area de teste para o produto das Matrizes Elementares
-print(aux[1]@(aux[0]@np.block([A,b])))
+print('A1XAb =\n',aux[0]@np.block([A,b]))
+
+print(np.linalg.det(A))
