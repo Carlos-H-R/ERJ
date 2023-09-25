@@ -2,21 +2,18 @@ import numpy as np
 
 def egm(A,b,m,n):
     aux=[]
+    Ab = A
+    bb = b
+
     for i in range(n):
         id_aux = np.identity(m)
         for j in range(i+1,m):
-            id_aux[j,i] = -A[j,i]/A[i,i]
+            id_aux[j,i] = -Ab[j,i]/Ab[i,i]
+        Ab = id_aux@Ab
+        bb = id_aux@bb
+        
         aux.append(id_aux)
-    # Ab = np.array(aux)
-
-    Ab = A
-    bb = b
-    for mx in aux:
-        Ab = mx@Ab
-        bb = mx@bb
-
-
-    return Ab,bb,aux
+    return np.triu(Ab),bb,aux
 
 def mult(X):
     x = 1
@@ -44,9 +41,9 @@ for i in range(m):
     A.append(list(map(float,input().split())))
 A = np.array(A)
 
-aux = list(map(float,input().split()))
+auxb = list(map(float,input().split()))
 b = []
-for i in aux:
+for i in auxb:
     b.append([i])
 b = np.array(b)
 
