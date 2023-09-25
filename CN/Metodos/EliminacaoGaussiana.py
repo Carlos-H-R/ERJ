@@ -51,11 +51,11 @@ b = np.array(b)
 
 
 
-
+# Projeta a Matriz dos Coeficientes e Matriz Resultado
 print(A)
 print(b)
 
-# Solução com Eliminacao Gaussiana
+# # Solução com Eliminacao Gaussiana Escalonada
 # [U, bu] = e_gauss(A,b,m,n)
 
 # Solucao com Eliminacao Guassiana Matricial
@@ -64,6 +64,7 @@ print(b)
 print('U =\n',U)
 print('bu=\n',bu)
 Y = np.linalg.solve(U,bu)
+print('Y = ',Y)
 print('Soma Y = ', sum(Y))
 print('Prod Y = ', mult(Y))
 
@@ -73,4 +74,4 @@ for i in range(len(aux)):
     print('A%d =\n'%(i+1),aux[i])
 
 # Area de teste para o produto das Matrizes Elementares
-print(aux[0]@np.block([A,b]))
+print(aux[1]@(aux[0]@np.block([A,b])))
