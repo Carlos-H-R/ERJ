@@ -59,6 +59,7 @@ print(b)
 # Solucao com Eliminacao Guassiana Matricial
 [U,bu,aux] = egm(A,b,m,n)
 
+np.set_printoptions(precision=2,suppress=True)
 print('U =\n',U)
 print('bu=\n',bu)
 Y = np.linalg.solve(U,bu)
@@ -72,6 +73,7 @@ for i in range(len(aux)):
     print('A%d =\n'%(i+1),aux[i])
 
 # Area de teste para o produto das Matrizes Elementares
+np.set_printoptions(precision=2,suppress=True)
 print('A1XAb =\n',aux[0]@np.block([A,b]))
 
-print(np.linalg.det(A))
+# print(np.linalg.det(A))
