@@ -35,6 +35,29 @@ def e_gauss(A,b, m, n):
     y = Ab[:,n:n+1]
     return T,y
 
+
+# Eliminacao Gaussiana Pivoteamento parcial
+def e_gauss_pp(A,b):
+    Ab = np.block([A,b])
+    [m,n] = Ab.shape
+
+    for i in range(m-1):
+        max_c = max(np.abs(Ab[i:m,i]))
+        idx = np.where(np.abs(Ab[i:m,i]) == max_c)
+        ind = idx[0][0] + i
+
+        if (ind > i):
+            Ab[[i,ind]] = Ab[[ind,i]]
+
+        for j in range(i+1,m):
+            Ab[j,i+1:n] = Ab[j,i+1:n]-Ab[j,i]/Ab[i,i]*Ab[i,i+1:n]
+
+        U = np.triu(Ab[:,0:n-1])
+        bu = Ab[:,n-1:n]
+        return U,bu
+    
+
+    
 A = []
 m,n = map(int, input().split())
 for i in range(m):
