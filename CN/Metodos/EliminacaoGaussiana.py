@@ -40,24 +40,29 @@ def e_gauss(A,b, m, n):
 def e_gauss_pp(A,b):
     Ab = np.block([A,b])
     [m,n] = Ab.shape
+    aux = []
 
     for i in range(m-1):
         max_c = max(np.abs(Ab[i:m,i]))
         idx = np.where(np.abs(Ab[i:m,i]) == max_c)
         ind = idx[0][0] + i
+        print(ind)
 
         if (ind > i):
+            print("troca")
             Ab[[i,ind]] = Ab[[ind,i]]
 
         for j in range(i+1,m):
             Ab[j,i+1:n] = Ab[j,i+1:n]-Ab[j,i]/Ab[i,i]*Ab[i,i+1:n]
 
-        U = np.triu(Ab[:,0:n-1])
-        bu = Ab[:,n-1:n]
-        return U,bu
+        aux.append(Ab)
+
+    U = np.triu(Ab[:,0:n-1])
+    bu = Ab[:,n-1:n]
+    return U,bu,aux
     
 
-    
+
 A = []
 m,n = map(int, input().split())
 for i in range(m):
@@ -80,23 +85,31 @@ print(b)
 # [U, bu] = e_gauss(A,b,m,n)
 
 # Solucao com Eliminacao Guassiana Matricial
-[U,bu,aux] = egm(A,b,m,n)
+# [U,bu,aux] = egm(A,b,m,n)
 
-np.set_printoptions(precision=2,suppress=True)
-print('U =\n',U)
-print('bu=\n',bu)
-Y = np.linalg.solve(U,bu)
-print('Y = ',Y)
-print('Soma Y = ', sum(Y))
-print('Prod Y = ', mult(Y))
+# np.set_printoptions(precision=2,suppress=True)
+# print('U =\n',U)
+# print('bu=\n',bu)
+# Y = np.linalg.solve(U,bu)
+# print('Y = ',Y)
+# print('Soma Y = ', sum(Y))
+# print('Prod Y = ', mult(Y))
 
 
-# Projeta Matrizes Elementares
-for i in range(len(aux)):
-    print('A%d =\n'%(i+1),aux[i])
+# # Projeta Matrizes Elementares
+# for i in range(len(aux)):
+#     print('A%d =\n'%(i+1),aux[i])
 
-# Area de teste para o produto das Matrizes Elementares
-np.set_printoptions(precision=2,suppress=True)
-print('A1XAb =\n',aux[0]@np.block([A,b]))
+# # Area de teste para o produto das Matrizes Elementares
+# np.set_printoptions(precision=2,suppress=True)
+# print('A1XAb =\n',aux[0]@np.block([A,b]))
 
-# print(np.linalg.det(A))
+# # print(np.linalg.det(A))
+
+
+[U,bu,p] = e_gauss_pp(A,b)
+S = np.linalg.solve(U,bu)
+print("U = \n",U)
+print("bu = \n",bu)
+print("P1 = \n",p[0])
+print("Solucao = \n",S)
