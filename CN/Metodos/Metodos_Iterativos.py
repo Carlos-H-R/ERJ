@@ -75,8 +75,8 @@ x = np.array(x)
 
 # Operacoes
 
-# R = jacobi(A,x,b,iter)
-R = seidel(A,x,b,iter)
+R = jacobi(A,x,b,iter)
+# R = seidel(A,x,b,iter)
 # R = general(A,x,b,iter)
 
 np.set_printoptions(precision=4,suppress=True)
