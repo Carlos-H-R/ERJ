@@ -133,36 +133,42 @@ def interpol_new(x,y):
 
 
 # inicia os vetores
-p = list(map(float,input().split()))
-value = float(input())
+# p = list(map(float,input().split()))
+# value = float(input())
 
-M = mk_point(p)
-x,y = mk_knots(p)
+# M = mk_point(p)
+# x,y = mk_knots(p)
 
-
-# Linear
-print("\nLinear")
-print("Resultado = ",interpol_lin(M,value))
-
-
-# Monômio
-M_coef,M_result = interpol_mon(M,value)
-print("\n\nMonomial")
-print("\nResultado = ",M_result)
-print("Coeficientes = ", M_coef)
+x = list(map(float, input().split()))
+y = list(map(float, input().split()))
+np.set_printoptions(precision=4)
 
 
-# Lagrange
-print("\n\nLagrange\n")
-pl, ll = interpol_lag(x,y)
-print("\nResultado = ", interpol_value(pl,value))
-print("Coeficientes de Lagrange = ",pl)
-print("Matriz Lag = \n",ll)
+# # Linear
+# print("\nLinear")
+# print("Resultado = ",interpol_lin(M,value))
+
+
+# # Monômio
+# M_coef,M_result = interpol_mon(M,value)
+# print("\n\nMonomial")
+# print("\nResultado = ",M_result)
+# print("Coeficientes = ", M_coef)
+
+
+# # Lagrange
+# print("\n\nLagrange\n")
+# pl, ll = interpol_lag(x,y)
+# print("\nResultado = ", interpol_value(pl,value))
+# print("Coeficientes de Lagrange = ",pl)
+# print("Matriz Lag = \n",ll)
 
 # Newton
-pn, pm, pc = interpol_new(x,y)
+pn,pm,pc = interpol_new(x,y)
+# pn, pm, pc = interpol_new(x,y)
 print("\n\nNewton")
-print("\nResultado = ", interpol_value(pn,value))
+# print("\nResultado = ", interpol_value(pn,value))
+print("\nResultado = ", pn)
 print("Coeficientes = ", pc)
 print("Matriz Newton = \n",pm)
 
