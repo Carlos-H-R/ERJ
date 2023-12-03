@@ -69,7 +69,7 @@ def simp_3_8(f,a,b,n):
                 integral += 2 * f(x)
 
             else:
-                integral += 3 * (x)
+                integral += 3 * f(x)
 
         integral *= 3*h/8
         return integral
@@ -104,7 +104,7 @@ def simp_3_8_tab(xs,ys):
 
 
 def f(t):
-    return (np.sin(t))
+    return (np.sin(t) * np.cos(t))
 
 
 # # Input for Simpson 1/3
@@ -120,17 +120,17 @@ def f(t):
 # result = simp_1_3_tab(x,y)
 
 
-# # Input for Simpson 3/8
-# a = float(input())
-# b = float(input())
-# n = int(input())
-# result = simp_3_8(f,a,b,n)
+# Input for Simpson 3/8
+a = float(input())
+b = float(input())
+n = int(input())
+result = simp_3_8(f,a,b,n)
 
 
-# Input for Simpson 3/8 Table
-x = list(map(float,input().split()))
-y = list(map(float,input().split()))
-result = simp_3_8_tab(x,y)
+# # Input for Simpson 3/8 Table
+# x = list(map(float,input().split()))
+# y = list(map(float,input().split()))
+# result = simp_3_8_tab(x,y)
 
 
 # Output
