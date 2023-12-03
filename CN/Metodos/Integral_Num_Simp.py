@@ -13,13 +13,13 @@ def error(found, original):
 def simp_1_3(f,a,b,n):
     if (n % 2 == 0):
         h = (b - a)/n
-        integral = 0
+        integral = 0.0
 
         x1=a
         x2=a+h
         x3=a+2*h
 
-        for i in range(n-2):
+        for i in range(0,n,2):
             integral += f(x1) + f(x3)
             integral += 4 * f(x2)
 
@@ -28,54 +28,113 @@ def simp_1_3(f,a,b,n):
             x3 += 2*h
 
         integral *= h/3
-
-    return integral
-
-
-def simpson_1_3(f, a, b, n):
-    """
-    Calcula a integral definida de uma função f(x) no intervalo [a, b] usando o método 1/3 de Simpson.
-
-    :param f: A função a ser integrada.
-    :param a: O limite inferior do intervalo.
-    :param b: O limite superior do intervalo.
-    :param n: O número de subintervalos. Deve ser um número par.
-    :return: O valor da integral aproximada ou NaN em caso de erro.
-    """
-    try:
-        if n % 2 != 0:
-            raise ValueError("O número de subintervalos (n) deve ser par.")
-
-        h = (b - a) / n
-        x = [a + i * h for i in range(n + 1)]
-        y = [f(xi) for xi in x]
-
-        integral = y[0] + 4 * sum(y[i] for i in range(1, n, 2)) + 2 * sum(y[i] for i in range(2, n - 1, 2)) + y[n]
-        integral *= h / 3
-
         return integral
-    except Exception as e:
-        print(f"Erro: {str(e)}")
-        return float(np.nan)
+    
+    else:
+        print('\nO valor de n deve ser par!\n')
+        return np.NAN
+    
+
+def simp_1_3_tab(xs,ys):
+    if (len(xs) != len(ys)):
+        raise ValueError("Vetores X e Y devem ter o mesmo tamanho!")
+    
+    n = len(xs) - 1
+    if (n % 2 == 0):
+        h = (xs[-1] - xs[0])/n
+        integral = 0.0
+
+        for i in range(0,n,2):
+            integral += ys[i] + ys[i+2]
+            integral += 4 * ys[i+1]
+
+        integral *= h/3
+        return integral
+    
+    else:
+        print('\nO valor de n deve ser par!\n')
+        return np.NAN
 
 
-def simp_1_3_New():
-    pass
+
+def simp_3_8(f,a,b,n):
+    if (n % 3 == 0):
+        h = (b - a)/n
+        integral = f(a) + f(b)
+
+        for i in range(1,n):
+            x = a + i*h
+
+            if (i%3 == 0):
+                integral += 2 * f(x)
+
+            else:
+                integral += 3 * (x)
+
+        integral *= 3*h/8
+        return integral
+
+    else:
+        print('\nO valor de n deve ser multiplo de 3\n')
+        return np.NAN
+
+
+def simp_3_8_tab(xs,ys):
+    if (len(xs) != len(ys)):
+        raise ValueError("Vetores X e Y devem ter o mesmo tamanho!")
+    
+    n = len(xs) - 1
+    if (n % 3 == 0):
+        h = (xs[-1] - xs[0])/n
+        integral = ys[0] + ys[-1]
+
+        for i in range(1,n):
+            if (i%3 == 0):
+                integral += 2 * ys[i]
+
+            else:
+                integral += 3 * ys[i]
+
+        integral *= 3*h/8
+        return integral
+
+    else:
+        print('\nO valor de n deve ser multiplo de 3\n')
+        return np.NAN
 
 
 def f(t):
-    return ((t**2))
+    return (np.sin(t))
 
 
-# Input
-a = float(input())
-b = float(input())
-n = int(input())
-result = simpson_1_3(f,a,b,n)
+# # Input for Simpson 1/3
+# a = float(input())
+# b = float(input())
+# n = int(input())
+# result = simp_1_3(f,a,b,n)
+
+
+# # Input for Simpson 1/3 Table
+# x = list(map(float,input().split()))
+# y = list(map(float,input().split()))
+# result = simp_1_3_tab(x,y)
+
+
+# # Input for Simpson 3/8
+# a = float(input())
+# b = float(input())
+# n = int(input())
+# result = simp_3_8(f,a,b,n)
+
+
+# Input for Simpson 3/8 Table
+x = list(map(float,input().split()))
+y = list(map(float,input().split()))
+result = simp_3_8_tab(x,y)
 
 
 # Output
-np.set_printoptions(precision=5)
+# np.set_printoptions(precision=11)
 print("Integral = ",result)
 
 # # Erro Relativo
