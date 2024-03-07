@@ -103,8 +103,32 @@ def simp_3_8_tab(xs,ys):
         return np.NAN
 
 
+def simp_3_8_tab(f,xs,ys):
+    if (len(xs) != len(ys)):
+        raise ValueError("Vetores X e Y devem ter o mesmo tamanho!")
+    
+    n = len(xs) - 1
+    if (n % 3 == 0):
+        h = (xs[-1] - xs[0])/n
+        integral = (f(xs[0])*ys[0]) + (f(xs[-1])*ys[-1])
+
+        for i in range(1,n):
+            if (i%3 == 0):
+                integral += 2 * (f(xs[i]) * ys[i])
+
+            else:
+                integral += 3 * (f(xs[i]) * ys[i])
+
+        integral *= 3*h/8
+        return integral
+
+    else:
+        print('\nO valor de n deve ser multiplo de 3\n')
+        return np.NAN
+
+
 def f(t):
-    return (np.sin(t) * np.cos(t))
+    return (t**2)
 
 
 # # Input for Simpson 1/3
@@ -120,21 +144,23 @@ def f(t):
 # result = simp_1_3_tab(x,y)
 
 
-# Input for Simpson 3/8
-a = float(input())
-b = float(input())
-n = int(input())
-result = simp_3_8(f,a,b,n)
+# # Input for Simpson 3/8
+# a = float(input())
+# b = float(input())
+# n = int(input())
+# result = simp_3_8(f,a,b,n)
 
 
-# # Input for Simpson 3/8 Table
-# x = list(map(float,input().split()))
-# y = list(map(float,input().split()))
-# result = simp_3_8_tab(x,y)
+# Input for Simpson 3/8 Table
+x = list(map(float,input().split()))
+y = list(map(float,input().split()))
+result = simp_3_8_tab(f,x,y)
 
+# Quando o problema misturar função e tabela -> coloque f como primeiro parametro
+# result = simp_3_8_tab(f,x,y)
 
 # Output
-# np.set_printoptions(precision=11)
+np.set_printoptions(precision=5)
 print("Integral = ",result)
 
 # # Erro Relativo
