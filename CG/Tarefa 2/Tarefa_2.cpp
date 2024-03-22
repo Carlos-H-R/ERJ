@@ -2,8 +2,11 @@
 #include <stdio.h>
 #include <math.h>
 
+int frameCounter;
+
 
 void display();
+void frameClock(int valor);
 
 void quadrado(GLfloat x, GLfloat y, GLfloat z, GLfloat size);
 void retangulo(GLfloat x, GLfloat y, GLfloat z, GLfloat height, GLfloat width);
@@ -13,29 +16,29 @@ void circunferencia(GLint n);
 void helice();
 void roda();
 
-void carro();
+void carro(int n);
 void background();
-void moinho();
+void moinho(int n);
 void sol();
 
 int main(int argc, char** argv){
     glutInit(&argc,argv);
-    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
 
-    glutInitWindowSize (800, 800);
+    glutInitWindowSize (1000, 800);
     glutInitWindowPosition (200, 200);
 
     glutCreateWindow ("Tarefa 1 - Parte 1");
 
     // Estado Inicial
-    glClearColor(1.0,1.0,1.0,1.0);
+    glClearColor(0.5,0.8,1,1);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-10,10,-10,10,-1,1);
+    glOrtho(-10,10,-8,8,-1,1);
 
     // desenho
-    display();
+    frameClock(frameCounter);
 
     glutMainLoop();
 
@@ -43,20 +46,50 @@ int main(int argc, char** argv){
 }
 
 
-void display(){
+void display(int n){
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glBegin(GL_LINES);
-        glColor3f(0,0,0);
-        glVertex3f(-10,0,0);
-        glVertex3f(10,0,0);
-        glVertex3f(0,-10,0);
-        glVertex3f(0,10,0);
-    glEnd();
+    background();
 
-    sol();
+    glPushMatrix();
+        glTranslatef(8,6,0);
+        glRotatef(-0.6*n,0,0,1);
+        sol();
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-9,-0.5,0);
+        glScalef(2,2,1);
+        moinho(n);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-5,0,0);
+        glScalef(1.2,1.2,1);
+        moinho(n);
+    glPopMatrix();
+    
+    glPushMatrix();
+        glTranslatef(0.5,-1,0);
+        glScalef(2.3,2.3,1);
+        moinho(n);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef((0.05*n-8),-4.6,0);
+        carro(n);
+    glPopMatrix();
 
     glFlush();
+    glutSwapBuffers();
+}
+
+
+void frameClock(int valor){
+    display(valor);
+    valor++;
+
+    glutTimerFunc(10,frameClock,valor);
 }
 
 
@@ -110,14 +143,14 @@ void helice(){
 
 void circulo(GLint n){
     glBegin(GL_POLYGON);
-        for (int i=0; i<n; i++) {glVertex3f(sin((2*3.1415/n)*i),cos((2*3.1415/n)*i),0);}
+        for (int i=0; i<n; i++) {glVertex3f(sin((2*M_PI/n)*i),cos((2*M_PI/n)*i),0);}
     glEnd();
 }
 
 
 void circunferencia(GLint n){
     glBegin(GL_LINE_LOOP);
-        for (int i=0; i<n; i++) {glVertex3f(sin((2*3.1415/n)*i),cos((2*3.1415/n)*i),0);}
+        for (int i=0; i<n; i++) {glVertex3f(sin((2*M_PI/n)*i),cos((2*M_PI/n)*i),0);}
     glEnd();
 }
 
@@ -137,22 +170,25 @@ void roda(){
 
     glLineWidth(5);
     circunferencia(100);
+    glLineWidth(1);
 }
 
 
-void carro(){
-    glPushMatrix();
-    glTranslatef(0.75,-0.3,0);
-    glScalef(0.3,0.3,1);
-    roda();
-    glPopMatrix();
+void carro(int n){
 
     glPushMatrix();
     glTranslatef(-0.75,-0.3,0);
     glScalef(0.3,0.3,1);
+    glRotatef(-n,0,0,1);
     roda();
     glPopMatrix();
     
+    glPushMatrix();
+    glTranslatef(0.75,-0.3,0);
+    glScalef(0.3,0.3,1);
+    glRotatef(-n,0,0,1);
+    roda();
+    glPopMatrix();
 
     glColor3f(1,0,0);
     retangulo(0,0.5,0,1,3);
@@ -160,13 +196,13 @@ void carro(){
 }
 
 
-void moinho(){
+void moinho(int n){
     glColor3f(0.4,0.4,0.4);
-    retangulo(0,0.5,0,1,0.1);
+    retangulo(0,1,0,2,0.1);
 
     glPushMatrix();
-    glTranslatef(0,1,0);
-    glScalef(0.5,0.8,1);
+    glTranslatef(0,2,0);
+    glRotatef(n,0,0,1);
     helice();
     glPushMatrix();
     glRotated(120,0,0,1);
@@ -176,6 +212,12 @@ void moinho(){
     helice();
     glPopMatrix();
     glPopMatrix();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glScalef(0.1,0.1,1);
+    circulo(50);
     glPopMatrix();
 }
 
@@ -195,19 +237,31 @@ void sol(){
 
     glLineWidth(5);
     circunferencia(100);
+    glLineWidth(1);
 }
 
 
 void background(){
     glColor3f(0,1,0);
-    // glBegin(GL_POLYGON);
-    //     glVertex3f(-10,,0);
-    //     glVertex3f(-10,,0);
-    //     glVertex3f(,,0);
-    //     glVertex3f(,,0);
-    //     glVertex3f(,,0);
-    //     glVertex3f(,,0);
-    //     glVertex3f(,,0);
-    //     glVertex3f(,,0);
-    //     glVertex3f(,,0);
+    glBegin(GL_POLYGON);
+        glVertex3f(-10,-8,0);
+        glVertex3f(-10,-1,0);
+        glVertex3f(-7,1,0);
+        glVertex3f(-6,0,0);
+        glVertex3f(-2,2,0);
+        glVertex3f(4,-3,0);
+        glVertex3f(8,0,0);
+        glVertex3f(10,-1,0);
+        glVertex3f(10,-8,0);
+    glEnd();
+
+    glColor3f(0.2,0.2,0.2);
+    retangulo(0,-4.5,0,3,20);
+
+    glColor3f(1,1,1);
+    glLineWidth(4);
+    glBegin(GL_LINES);
+        glVertex3f(-10,-4.5,0);
+        glVertex3f(10,-4.5,0);
+    glEnd();
 }
