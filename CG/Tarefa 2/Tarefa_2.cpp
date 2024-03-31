@@ -5,7 +5,7 @@
 int frameCounter;
 
 
-void display();
+void display(int);
 void frameClock(int valor);
 
 void quadrado(GLfloat x, GLfloat y, GLfloat z, GLfloat size);
@@ -60,19 +60,19 @@ void display(int n){
     glPushMatrix();
         glTranslatef(-9,-0.5,0);
         glScalef(2,2,1);
-        moinho(n);
+        moinho(1.4*n);
     glPopMatrix();
 
     glPushMatrix();
         glTranslatef(-5,0,0);
         glScalef(1.2,1.2,1);
-        moinho(n);
+        moinho(1.1*n);
     glPopMatrix();
     
     glPushMatrix();
         glTranslatef(0.5,-1,0);
         glScalef(2.3,2.3,1);
-        moinho(n);
+        moinho(2*n);
     glPopMatrix();
 
     glPushMatrix();

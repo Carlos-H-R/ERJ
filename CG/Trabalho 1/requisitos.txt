@@ -1,0 +1,76 @@
+    Contextualização do trabalho
+Um jogo de rolagem lateral ou rolagem lateral, também conhecido como side
+scrolling, é um jogo eletrônico no qual a jogabilidade é vista do ângulo da câmera de
+visão lateral e, à medida que o personagem do jogador se move para a esquerda ou
+para a direita, a tela rola com ele. Para entender melhor o estilo pegue como
+exemplo o jogo Mario que é um side scrolling.
+A principal característica de um jogo side scrolling é a movimentação. Conforme o
+jogador chega a beira da tela, independente se para a esquerda ou direita, a visão o
+acompanha, dando vida aos acontecimentos em tela, mesmo com um plano de
+fundo normalmente estático.
+
+    Questões
+Utilize os conceitos de transformações geométricas, visualização e modelagem,
+modelagem hierárquica e animação bidimensional para implementar uma versão
+simplificada de um jogo side scrolling.
+1. O plano de fundo deve ter as seguintes características:
+a. A tela de fundo consiste em um cenário fixo (como o ilustrado na
+Figura 1), que é visualizado parcialmente, a cada instante do jogo,
+conforme a movimentação do personagem principal;
+b. O cenário deve ser construídos a partir de primitivas como:
+quadriláteros, triângulos e círculos;
+c. A mesma tela deve ser visualizada em loop. Quando o personagem
+
+chegar ao seu final, ele volta ao início da tela. Essa transição (do final
+para o início da dela) deve ser imperceptível.
+d. Implemente elementos para tornar a tela de fundo um pouco mais
+dinâmica.
+Exemplos:
+i. Nuvens se movimentando;
+ii. Passaros voando;
+iii. Aviões passando;
+iv. Cor do céu se modificando em função do tempo de jogo.
+2. Implemente um personagem principal que, ao se movimentar, move seus
+braços e pernas;
+a. Modele um veículo automotivo como o personagem principal do jogo.
+Use a sua criatividade.
+b. O veículo deve se mover da esquerda para a direita;
+c. O veículo deve ser construído a partir das primitivas: quadriláteros,
+círculo e triângulo, construídos inicialmente em seus próprios sistemas
+de coordenadas, centrados na origem;
+d. Além de se movimentar, permita que esse veículo salte ao acionarmos
+uma tecla do teclado.
+
+3. Implemente o aparecimento de elementos de bonificação (moedas,
+diamantes e corações, por exemplo) que devem ser capturados pelo
+personagem principal durante o jogo.
+a. A cada vez que o personagem volta ao início da tela, esses elementos
+devem ser (aleatoriamente) adicionados à paisagem de forma
+apropriada (ao alcance do personagem principal). Os elementos
+aparecerão à medida que o personagem se movimenta e avança pela
+tela de fundo;
+b. Quando o personagem captura o elemento, o elemento deixa de
+aparecer na tela;
+c. Crie um enredo que dê utilidade para os elementos de bonificação
+criados. Os elementos podem atribuir poder (um salto mais alto por
+exemplo), energia ou vidas extras. Use a sua criatividade!
+
+4. Implemente o aparecimento (também aleatório) de elementos que
+representam obstáculos ao avanço do personagem principal, buracos pelo
+caminho, animais, rochas ou fogueiras, por exemplo.
+a. Crie um enredo que justifique o elemento criado. Ao tocar no
+elemento, o personagem perde uma vida, perde energia ou perde um
+poder adquirido.
+
+
+
+    Questões bônus
+
+1. Implemente a capacidade do personagem principal se movimentar para a
+esquerda e acelerar (nas duas direções) ao serem pressionadas teclas do
+teclado;
+2. Implemente o surgimento (aleatório) de elementos nocivos ao personagem
+principal, que atravessam a tela em direção ao personagem (bolas de fogo
+por exemplo);
+3. Implemente a capacidade do veículo diminuir (ou aumentar) de tamanho ao
+encontrar elementos de bonificação específicos.

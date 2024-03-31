@@ -1,0 +1,6 @@
+- Fazer ciclos de dia e noite
+- colocar o sol se movendo durante o dia e a lua durante a noite (função de posição em relação ao tempo)
+- ao longo do ciclo a cor do ceu vai mudando de acordo com o "horário"
+- o fundo se move lentamente, os elementos da frente se movem mais rápidos
+- moinhos se movem ao longo do tempo
+- todos os objetos q se movem devem ter animações
