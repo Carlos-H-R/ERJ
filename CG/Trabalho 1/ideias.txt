@@ -4,3 +4,23 @@
 - o fundo se move lentamente, os elementos da frente se movem mais rápidos
 - moinhos se movem ao longo do tempo
 - todos os objetos q se movem devem ter animações
+- nuvens sao geradas aleatoriamente (colecao de nuvens com tamanhos randomicos)
+- pásssaros só voam a noite
+- montanhas distantes cinzas/azuladas e/ou cobertas de neve
+- montanhas próximas possuindo vegetação
+- dividir o background em camadas e fazer loops individuais com cada uma
+- dar velocidades de deslocamento diferentes pra cada camadas
+
+
+vertices da primeira parte da tela
+	glVertex3f(-10,-10,0);
+	glVertex3f(-10,0,0);
+	glVertex3f(-7,5,0);
+	glVertex3f(-4,1,0);
+	glVertex3f(-2,4,0);
+	glVertex3f(1,1,0);
+	glVertex3f(2,5,0);
+	glVertex3f(5,0,0);
+	glVertex3f(8,6,0);
+	glVertex3f(10,2,0);
+	glVertex3f(10,-10,0);
