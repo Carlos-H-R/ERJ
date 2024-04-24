@@ -7,10 +7,13 @@ typedef struct Position {
 	GLfloat z;
 }Position;
 
-GLfloat center = 80;
-GLint frames;
 Position astro;
 Position playerP;
+GLfloat center = 80;
+GLint frames;
+GLint move;
+
+GLboolean isDay;
 
 
 void init();
@@ -23,10 +26,10 @@ void sky();
 void background();
 
 void sun();
-void moon();
+void moon(GLint);
 void cloud(GLint);
 
-void player();
+void playerInterface();
 void character();
 void vehicle();
 
@@ -42,7 +45,7 @@ void quad(GLfloat, GLfloat);
 void circle(GLint);
 void circle_edge(GLint);
 
-void path();
+void astroPath();
 
 
 int main(int argc, char** argv) {
@@ -68,7 +71,10 @@ void init() {
 	frames = 0;
 	frameConter(frames);
 
-	// player.x
+	move = 0;
+	playerP.x = 0;
+	playerP.y = 0;
+	playerP.z = 0;
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -84,17 +90,16 @@ void frameConter(GLint frame) {
 
 void display() {
 	glMatrixMode(GL_MODELVIEW);
-	glClearColor(0.5294,0.8078,0.9216,1);
+
+	if (isDay)	glClearColor(0.5294,0.8078,0.9216,1);
+	else glClearColor(0.0468,0.0781,0.2695,1);
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	sky();
 	background();
+	playerInterface();
 
-	glPushMatrix();
-		character();
-	glPopMatrix();
-	
 	glFlush();
 	glutSwapBuffers();
 }
@@ -135,6 +140,13 @@ void keyboard(unsigned char key, GLint x, GLint y) {
 		glutPostRedisplay();
 		break;
 	
+	// case 'w':
+	// 	playerP.y += 0.1;
+	// 	center += 0.1;
+	// 	if (center >= 80) center = 0;
+	// 	glutPostRedisplay();
+	// 	break;
+	
 	default:
 		break;
 	}
@@ -145,12 +157,13 @@ void keyboard(unsigned char key, GLint x, GLint y) {
 
 
 void sky() {
-	bool day = (frames % 600) < 300;
-	path();
+	isDay = (frames % 10000) < 5000;
+	astroPath();
 
 	glPushMatrix();
 		glTranslatef(astro.x,astro.y,astro.z);
-		sun();
+        if (isDay) sun();
+        else moon(5);
 	glPopMatrix();
 }
 
@@ -214,13 +227,16 @@ void background() { // subdivide into land, sky and front elements
 		glPushMatrix();
 			glTranslatef(20,-6.5,0);
 			quad(60,3.5);
+			glColor3f(1,1,1);
+			quad(60,0.1);
 		glPopMatrix();
 	glPopMatrix();
 
 	// clouds (need to include clouds loop)
 	glPushMatrix();
 		glTranslatef(-8+(frames*0.005),8,1);
-		vehicle();
+		glScalef(1.3,1.3,1);
+        cloud(0);
 	glPopMatrix();
 	glPushMatrix();
 		glTranslatef( 6+(frames*0.005),7,1);
@@ -234,11 +250,25 @@ void background() { // subdivide into land, sky and front elements
 void sun() {
 	glColor4f(0.9922,0.9843,0.8275,1);
 	circle(30);
+	glColor3f(1,1,0);
+	circle_edge(30);
 }
 
 void moon(GLint phase) {
-	glColor4f(0.9609,0.9414,0.832,0.5);
-	circle(30);
+    switch (phase)
+    {
+    case 5:
+	    glColor4f(0.9609,0.9414,0.832,0.5);
+	    circle(30);
+	    glColor4f(0.9609,0.9414,0.9025,0.5);
+			circle_edge(30);
+      break;
+    
+    default:
+	    glColor4f(0.9609,0.9414,0.832,0.5);
+	    circle(30);
+      break;
+    }
 }
 
 void cloud(GLint type) {
@@ -278,6 +308,15 @@ void cloud(GLint type) {
 
 
 // Game Objects
+void playerInterface() {
+	// control if is the vehicle or alien
+	// control movements
+	glPushMatrix();
+		glTranslatef(0,-6.5,0);
+		character();
+	glPopMatrix();
+}
+
 void character() {
 	glColor3f(0.5,0.5,0.5);
 	quad(0.1,0.3);
@@ -314,15 +353,55 @@ void vehicle() {
 
 // Interactive Objects
 void spaceBox() {
+	glPushMatrix();
+		glRotatef(1,0,0,1);
+		glColor3f(0.33,0.33,0.33);
 
+		quad(0.5,0.5);
+
+		glColor3f(0.3125,0.7812,0.4687);
+		glPushMatrix();
+			glScalef(0.1,0.1,1);
+			circle(30);
+		glPopMatrix();
 }
 
 void heart() {
+	glColor3f(1,0,0);
 
+	glPushMatrix();
+		glRotatef(60,0,0,1);
+		triangle(0.33);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-0.075,0.07,0);
+		glScalef(0.075,0.075,1);
+		circle(30);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(0.075,0.07,0);
+		glScalef(0.075,0.075,1);
+		circle(30);
+	glPopMatrix();
 }
 
 void energyCore() {
+	glPushMatrix();
+		glScalef(0.25,0.25,1);
+		glColor3f(1,1,0);
+		circle(30);
+		glColor3f(0,0,0);
+		circle_edge(30);
+	glPopMatrix();
 
+	glColor3f(0.3125,0.7812,0.4687);
+	glPushMatrix();
+		glRotatef(45,0,0,1);
+		quad(0.2,0.2);
+	glPopMatrix();
+	quad(0.2,0.2);
 }
 
 
@@ -364,7 +443,7 @@ void circle_edge(GLint n) {
 }
 
 
-void path() {
+void astroPath() {
 	GLfloat time = frames % 5000;
 	GLfloat fTime = time / 5000;
 
@@ -376,3 +455,9 @@ void path() {
 	astro.z =  0;
 	astro.y =  8.5 + (-0.1 * pow(astro.x,2));
 }
+
+
+/* 
+1000 frames pra deslizar a cor de azul ceu pra alaranjado (4000 -> 5000)
+1000 frames pra deslizar do alaranjado para as cores noturnas (0 -> 1000)
+*/
