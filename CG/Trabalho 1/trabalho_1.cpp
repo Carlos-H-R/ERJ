@@ -1,5 +1,10 @@
 #include <GL/glut.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define RAND_MAX = 30
+
 
 typedef struct Position {
 	GLfloat x;
@@ -7,13 +12,23 @@ typedef struct Position {
 	GLfloat z;
 }Position;
 
+
 Position astro;
 Position playerP;
-GLfloat center = 80;
+Position itemPosition;
+
+GLfloat center;
+GLfloat health;
+GLfloat speed;
+GLfloat move;
+
 GLint frames;
-GLint move;
+GLint itemType;
 
 GLboolean isDay;
+GLboolean vehicleOn;
+GLboolean itemCaptured;
+GLboolean colision;
 
 
 void init();
@@ -36,6 +51,7 @@ void vehicle();
 void missile();
 void plane();
 
+void itemController();
 void spaceBox();    // summon vehicle
 void heart();       // recover health
 void energyCore();  // increase speed for a while
@@ -49,8 +65,11 @@ void astroPath();
 
 
 int main(int argc, char** argv) {
+	srand(time(NULL));
+	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+
 
 	glutInitWindowSize(800,800);
 	glutInitWindowPosition(50,50);
@@ -68,13 +87,22 @@ int main(int argc, char** argv) {
 
 
 void init() {
+	center = 2;
+
+	itemType = rand() % 3;
+	itemPosition.z = 0;
+	itemPosition.x = rand() % 40;
+	itemPosition.y = -6.5;
+	
 	frames = 0;
 	frameConter(frames);
 
-	move = 0;
+	move = 0; 
 	playerP.x = 0;
 	playerP.y = 0;
 	playerP.z = 0;
+	speed = 3;
+	health = 100;
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -82,6 +110,10 @@ void init() {
 }
 
 void frameConter(GLint frame) {
+	GLfloat dist = abs(itemPosition.x);
+	if (dist <= 0.1) colision = true;
+
+
 	frames ++;
 	glutPostRedisplay();
 
@@ -99,6 +131,7 @@ void display() {
 	sky();
 	background();
 	playerInterface();
+	itemController();
 
 	glFlush();
 	glutSwapBuffers();
@@ -113,30 +146,42 @@ void keyboard(unsigned char key, GLint x, GLint y) {
 	switch (key)
 	{
 	case 'a':
-		playerP.x -= 0.05;
-		center -= 0.05;
+		itemPosition.x += 0.05 * speed;
+		move -= 1;
+		center -= 0.05 * speed;
 		if (center < 0) center = 80;
 		glutPostRedisplay();
 		break;
 	
 	case 'A':
-		playerP.x -= 0.1;
-		center -= 0.1;
+		itemPosition.x += 0.05 * speed;
+		move -= 2;
+		center -= 0.1 * speed;
 		if (center < 0) center = 80;
 		glutPostRedisplay();
 		break;
 	
 	case 'd':
-		playerP.x += 0.05;
-		center += 0.05;
-		if (center >= 80) center = 0;
+		itemPosition.x -= 0.05 * speed;
+		move += 1;
+		center += 0.05 * speed;
+		if (center >= 80) {
+			center = 0;
+			itemCaptured = false;
+			itemType = rand() % 3;
+		}
 		glutPostRedisplay();
 		break;
 	
 	case 'D':
-		playerP.x += 0.1;
-		center += 0.1;
-		if (center >= 80) center = 0;
+		itemPosition.x -= 0.05 * speed;
+		move += 2;
+		center += 0.1 * speed;
+		if (center >= 80) {
+			center = 0;
+			itemCaptured = false;
+			itemType = rand() % 3;
+		}
 		glutPostRedisplay();
 		break;
 	
@@ -232,14 +277,15 @@ void background() { // subdivide into land, sky and front elements
 		glPopMatrix();
 	glPopMatrix();
 
+	int cloudCycle = frames % 8000;
 	// clouds (need to include clouds loop)
 	glPushMatrix();
-		glTranslatef(-8+(frames*0.005),8,1);
+		glTranslatef(-26+(cloudCycle*0.005),8,1);
 		glScalef(1.3,1.3,1);
         cloud(0);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef( 6+(frames*0.005),7,1);
+		glTranslatef(-12+(cloudCycle*0.005),7,1);
 		cloud(0);
 	glPopMatrix();
 	
@@ -311,21 +357,32 @@ void cloud(GLint type) {
 void playerInterface() {
 	// control if is the vehicle or alien
 	// control movements
-	glPushMatrix();
-		glTranslatef(0,-6.5,0);
-		character();
-	glPopMatrix();
+
+	if (vehicleOn) {
+		glPushMatrix();
+			glTranslatef(0,-5,0);
+			vehicle();
+		glPopMatrix();
+	}
+
+	else {
+		glPushMatrix();
+			glTranslatef(0,-6.5,0);
+			character();
+		glPopMatrix();
+	}
 }
 
 void character() {
 	glColor3f(0.5,0.5,0.5);
 	quad(0.1,0.3);
 	glPushMatrix();
-		glTranslatef(-0.025,-0.4,0);
-		quad(0.05,0.5);
+		glTranslatef(0,-0.2,0);
+		quad(0.1,0.25);
 	glPopMatrix();
 	glPushMatrix();
-		glTranslatef(0.025,-0.4,0);
+		glTranslatef(0,-0.4,0);
+		glRotatef(-move*2,0,0,1);
 		quad(0.05,0.5);
 	glPopMatrix();
 	glPushMatrix();
@@ -352,6 +409,44 @@ void vehicle() {
 
 
 // Interactive Objects
+void itemController() {
+	if (!itemCaptured) {
+		itemCaptured = colision;
+		switch (itemType)
+		{
+		case 0:
+			glPushMatrix();
+				glTranslatef(itemPosition.x,itemPosition.y,itemPosition.z);
+				heart();
+			glPopMatrix();
+
+			if (colision) health += 20;
+			break;
+
+		case 1:
+			glPushMatrix();
+				glTranslatef(itemPosition.x,itemPosition.y,itemPosition.z);
+				energyCore();
+			glPopMatrix();
+
+			if (colision) speed += 0.1;
+			break;
+
+		case 2:
+			glPushMatrix();
+				glTranslatef(itemPosition.x,itemPosition.y,itemPosition.z);
+				spaceBox();
+			glPopMatrix();
+
+			if (colision) vehicleOn = true;
+			break;
+
+		default:
+			break;
+		}
+	}
+}	
+
 void spaceBox() {
 	glPushMatrix();
 		glRotatef(1,0,0,1);
