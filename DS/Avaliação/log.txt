@@ -1,0 +1,38 @@
+Para teste inicial da base de dados foram selecionados:
+    - os primeiros 952 registros para treino (equivalente a 85% da base)
+    - os ultimos 168 registros para teste (equivalente a 15% da base)
+
+Primeira tentativa de gerar o modelo resultou em erro devido a conversão de espaços vazios em float
+    -> Para próxima tentativa popular os missing values com valor padrão para observar o comportamento inicial do modelo
+
+# Todos os missing values foram preenchidos com valor 0
+Resultados:
+    Accuracy    -> 0.726
+    Precision   -> 0.954
+    Recall      -> 0.726
+    F1          -> 0.726
+
+
+Identificando Outliers
+    -> Para identificar outliers analisar a natureza do atributo e observar o comportamento dos registros
+
+
+
+
+
+- Próximas tarefas: 
+    1. Identificar Outliers
+    2. Definir Como completar missing value de forma mais adequada
+    3. Verificar se é necessário normalizar ou discretizar
+    4. Seleção de variáveis/redução da base
+
+    Obs.: A cada tarefa deve-se reportar o quê foi feito e o porquê.
+          Rodar o modelo e usar os resultados como parâmetro para as decisões
+          A meta é elevar as métricas até pelo menos 0.9
+
+
+Script para calcular a frequência de preenchimento dos atributos
+    frequencia = base.count()
+    frequencia = frequencia.map(lambda x: x / 1120)
+    print(frequencia)
+    

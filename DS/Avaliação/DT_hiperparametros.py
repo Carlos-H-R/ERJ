@@ -67,7 +67,8 @@ def modelosDT(ds, name):
     print('Results on the test set:')
     print(classification_report(y_true, y_pred))
     
-    acc=accuracy_score(y_test, y_pred,normalize=False)
+    # acc=accuracy_score(y_test, y_pred,normalize=False)
+    acc=accuracy_score(y_test, y_pred,normalize=True)
     precision=precision_score(y_test, y_pred)
     f1=f1_score(y_test, y_pred, average='micro')    	
     recall=recall_score(y_test, y_pred, average='weighted')
@@ -88,34 +89,34 @@ def modelosDT(ds, name):
 
 
 
+if __name__ == "__main__":
+    #########################################################
+    # leitura de dados UX
+    planilha_1=pd.read_excel(r"base_pacientes_sintomas.xlsx",sheet_name="treino")
+    X_train = planilha_1.iloc[:,:-1]
+    y_train = planilha_1.iloc[:,-1]
 
-#########################################################
-# leitura de dados UX
-planilha_1=pd.read_excel(r"base_pacientes_sintomas.xlsx",sheet_name="treino")
-X_train = planilha_1.iloc[:,:-1]
-y_train = planilha_1.iloc[:,-1]
+    # # fit scaler media-desvio
+    # X = StandardScaler().fit_transform(X)
 
-# # fit scaler media-desvio
-# X = StandardScaler().fit_transform(X)
+    # normalizacao com min-max
+    # scaler = MinMaxScaler(feature_range=(0, 1))
+    # scaler = scaler.fit(X_train)    
+    # X_scaled = scaler.transform(X_train)
+        
 
-# normalizacao com min-max
-# scaler = MinMaxScaler(feature_range=(0, 1))
-# scaler = scaler.fit(X_train)    
-# X_scaled = scaler.transform(X_train)
-    
+    planilha_1=pd.read_excel(r"base_pacientes_sintomas.xlsx",sheet_name="teste")
+    X_test = planilha_1.iloc[:,:-1]
+    y_test = planilha_1.iloc[:,-1]
 
-planilha_1=pd.read_excel(r"base_pacientes_sintomas.xlsx",sheet_name="teste")
-X_test = planilha_1.iloc[:,:-1]
-y_test = planilha_1.iloc[:,-1]
-
-# X_teste_scaled = scaler.transform(X_test)
-# X_test=X_teste_scaled
-
-
+    # X_teste_scaled = scaler.transform(X_test)
+    # X_test=X_teste_scaled
 
 
-#################################
-data_sets = [(X_train, y_train),(X_test, y_test)]
-name=['Covid-Train']
-modelosDT(data_sets, name=name)
-#modelosRF(data_sets, name=name)
+
+
+    #################################
+    data_sets = [(X_train, y_train),(X_test, y_test)]
+    name=['Covid-Train']
+    modelosDT(data_sets, name=name)
+    #modelosRF(data_sets, name=name)
