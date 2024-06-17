@@ -20,6 +20,8 @@ Identificando Outliers
 
 
 
+
+
 - Próximas tarefas: 
     1. Identificar Outliers
     2. Definir Como completar missing value de forma mais adequada
@@ -35,4 +37,9 @@ Script para calcular a frequência de preenchimento dos atributos
     frequencia = base.count()
     frequencia = frequencia.map(lambda x: x / 1120)
     print(frequencia)
+
+
+
+Algumas questões:
+    As alterações só devem ser feitas na base de treino, então como fazer a base de teste rodar no modelo?
     
