@@ -13,15 +13,23 @@ def data_to_number(data: pd.DataFrame):
 base = pd.read_excel(r'./Avaliação/lepto_base.xlsx', sheet_name='base_original')
 
 # Completa os espaços vazios com zero
-base = base.fillna(0)
-base = base.apply(lambda x: x.map(data_to_number))
-print(base)
+base_1 = base.fillna(0)
+base_1 = base_1.apply(lambda x: x.map(data_to_number))
+# print(base)
 
-distribution = np.std(base['T_primeiros_sintomas_atendimento_medico'])
-mean = np.mean(base['T_primeiros_sintomas_atendimento_medico'])
-print("Standart Deviation",distribution)
-print("Mean: ", mean)
+atributes = base.columns
 
-frequencia = base.count()
-frequencia = frequencia.map(lambda x: x / 1120)
-print("\n\n\n",frequencia)
+for atribute in atributes:
+    min = np.min(base_1[atribute])
+    max = np.max(base_1[atribute])
+    distribution = np.std(base_1[atribute])
+    mean = np.mean(base_1[atribute])
+    frequencia = base[atribute].count()
+    frequencia = frequencia/1120
+    
+    print(f"\n\n{atribute}")
+    print(f"Frequencia: {frequencia}")
+    print(f"Standart Deviation: {distribution}")
+    print(f"Min: {min}")
+    print(f"Max: {max}")
+    print(f"Mean: {mean}")
