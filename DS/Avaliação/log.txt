@@ -18,6 +18,8 @@ Identificando Outliers
     -> Usada a distribuição padrão
     -> Considerando 2a
 
+    -> Para os atributos binários é removido qualquer coisa que não seja 0 ou 1
+
 Resultados (substituindo missing por 1):
     Accuracy    -> 0.7857142857142857
     Precision   -> 0.9104477611940298
@@ -31,10 +33,25 @@ Resultados (substituindo missing por 0):
     F1          -> 0.7142857142857143
 
 
-Tratando Missing
+
+Tratando Missing Values
+    - Interpolação
+    - KNN
+    - Probabilidade
 
 
+Nomalização e discretização
+    - Os 3 primeiros atributos são inteiros não negativos e estão na mesma escala
+    - Testar normalizar os tres primeiros atributos
+        (Resultados -> se melhorar manter)
 
+
+Seleção de variável
+    - olhar para a árvore e observar os atributos mais relevantes
+    - usar combinações exaustivas de atributos para escolher quais remover
+
+
+Testar os resultados dessa base com outro modelo (tava pensando no Naive Bayes)
 
 
 

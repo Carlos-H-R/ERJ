@@ -43,9 +43,7 @@ y_test = base.iloc[952:,-1]
 
 # Preeche os missing values com valor padrão
 x_train.fillna(0)
-# y_train.fillna(0)
 x_train = x_train.apply(lambda x: x.map(data_to_number))
-# x_test = x_test.apply(lambda x: x.map(data_to_number))
 
 
 # Remove os outliers da base de treino para o atributo em questão
@@ -53,9 +51,7 @@ outlier(x_train)
 
 # Preeche os missing values com valor padrão
 x_train.fillna(0)
-# y_train.fillna(0)
 x_train = x_train.apply(lambda x: x.map(data_to_number))
-# x_test = x_test.apply(lambda x: x.map(data_to_number))
 
 # cria um dataset e inicia o modelo
 data_sets = [(x_train, y_train),(x_test, y_test)]
