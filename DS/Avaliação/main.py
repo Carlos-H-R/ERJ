@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
-# import DT_hiperparametros as DTh
-import decition_tree as dt
+import modelos.decition_tree as dt
 
 from functools import partial
 
@@ -55,5 +54,4 @@ x_train = x_train.apply(lambda x: x.map(data_to_number))
 
 # cria um dataset e inicia o modelo
 data_sets = [(x_train, y_train),(x_test, y_test)]
-# DTh.modelosDT(data_sets, name='Modelo_Original')
 dt.decision_tree(data_sets)
