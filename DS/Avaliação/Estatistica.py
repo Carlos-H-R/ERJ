@@ -18,6 +18,8 @@ def check_balance(colum):
         elif i==1:
             n1 += 1
 
+    total = n0+n1
+
     if n0 == 0 or n1 == 0:
         return 0
     

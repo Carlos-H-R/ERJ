@@ -41,13 +41,14 @@ def modelosDT(ds, name):
      
     DTC=DecisionTreeClassifier(class_weight="balanced")
     
-    DTC_Grid=GridSearchCV(DTC,param_grid=depth , cv=6, scoring='f1')
+    DTC_Grid=GridSearchCV(DTC,param_grid=depth , cv=6, scoring='accuracy')
+    # DTC_Grid=GridSearchCV(DTC,param_grid=depth , cv=6, scoring='f1')
     DTC=DTC_Grid.fit(X_train,y_train) 
 
 
     arquivo = open('saidaDTC.txt','w')
 
-    print('Best parameters found:\n', DTC.best_params_)
+    # print('Best parameters found:\n', DTC.best_params_)
     arquivo.write('Best parameters found: %s' % DTC.best_params_)
     arquivo.write('\n')
 
@@ -55,7 +56,7 @@ def modelosDT(ds, name):
     means = DTC.cv_results_['mean_test_score']
     stds = DTC.cv_results_['std_test_score']
     for mean, std, params in zip(means, stds, DTC.cv_results_['params']):
-        print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
+        # print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
         arquivo.write('media: %0.3f ' % mean)
         std=std*2
         arquivo.write(' desvio: (+/-%0.03f) ' % std)
@@ -64,11 +65,10 @@ def modelosDT(ds, name):
 
     y_true, y_pred = y_test, DTC.predict(X_test)
 
-    print('Results on the test set:')
-    print(classification_report(y_true, y_pred))
+    # print('Results on the test set:')
+    # print(classification_report(y_true, y_pred))
     
-    # acc=accuracy_score(y_test, y_pred,normalize=False)
-    acc=accuracy_score(y_test, y_pred,normalize=True)
+    acc=accuracy_score(y_test, y_pred,normalize=False)
     precision=precision_score(y_test, y_pred)
     f1=f1_score(y_test, y_pred, average='micro')    	
     recall=recall_score(y_test, y_pred, average='weighted')

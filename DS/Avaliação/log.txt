@@ -15,6 +15,23 @@ Resultados:
 
 Identificando Outliers
     -> Para identificar outliers analisar a natureza do atributo e observar o comportamento dos registros
+    -> Usada a distribuição padrão
+    -> Considerando 2a
+
+Resultados (substituindo missing por 1):
+    Accuracy    -> 0.7857142857142857
+    Precision   -> 0.9104477611940298
+    Recall      -> 0.7857142857142857
+    F1          -> 0.7857142857142857
+
+Resultados (substituindo missing por 0):
+    Accuracy    -> 0.7142857142857143
+    Precision   -> 0.9152542372881356
+    Recall      -> 0.7142857142857143
+    F1          -> 0.7142857142857143
+
+
+Tratando Missing
 
 
 
