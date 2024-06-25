@@ -8,6 +8,21 @@ def data_to_number(data: pd.DataFrame):
     
     else:
         return data
+    
+def check_balance(colum):
+    n0 = 0
+    n1 = 0
+    for i in colum:
+        if i==0:
+            n0 += 1
+        elif i==1:
+            n1 += 1
+
+    if n0 == 0 or n1 == 0:
+        return 0
+    
+    else:
+        return n1/n0
 
 # Lê a base e guarda nema variável
 base = pd.read_excel(r'./Avaliação/lepto_base.xlsx', sheet_name='base_original')
@@ -26,6 +41,7 @@ for atribute in atributes:
     mean = np.mean(base_1[atribute])
     frequencia = base[atribute].count()
     frequencia = frequencia/1120
+    balaceamento = check_balance(base[atribute])
     
     print(f"\n\n{atribute}")
     print(f"Frequencia: {frequencia}")
@@ -33,3 +49,4 @@ for atribute in atributes:
     print(f"Min: {min}")
     print(f"Max: {max}")
     print(f"Mean: {mean}")
+    print(f"Balance: {balaceamento}")
