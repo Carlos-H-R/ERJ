@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
-import modelos.decition_tree as dt
+import modelos.decision_tree as dt
+
+from sklearn.impute import KNNImputer
 
 from functools import partial
 
@@ -8,7 +10,7 @@ from functools import partial
 def check_outlier(data, deviation, mean):
     inf = mean - 2*deviation
     sup = mean + 2*deviation
-    if inf < data < sup:
+    if data < sup:
         return data
     
     else:
@@ -21,15 +23,23 @@ def outlier(base: pd.DataFrame):
         base[index].apply(partial(check_outlier, deviation, mean))
 
     
+def data_clear(data: pd.DataFrame):
+    if (type(data) != type(int) and type(data) != type(float)) or data == 666:
+        return np.nan
+    
+    else:
+        return data
+    
+
 def data_to_number(data: pd.DataFrame):
-    if type(data) != type(0) and type(data) != type(1.0):
-        return int(0)
+    if type(data) != type(int) and type(data) != type(float):
+        return 666
     
     else:
         return data
 
 # Lê a base e armazena em uma variável
-base = pd.read_excel(r'./Avaliação/lepto_base.xlsx', sheet_name='base_original')
+base = pd.read_excel(r'./base/lepto_base.xlsx', sheet_name='base_original')
 
 
 # Seleciona a parte da base para treinamento
@@ -41,17 +51,23 @@ x_test = base.iloc[952:,:-1]
 y_test = base.iloc[952:,-1]
 
 # Preeche os missing values com valor padrão
-x_train.fillna(0)
+x_train.fillna(666)
 x_train = x_train.apply(lambda x: x.map(data_to_number))
-
 
 # Remove os outliers da base de treino para o atributo em questão
 outlier(x_train)
 
-# Preeche os missing values com valor padrão
-x_train.fillna(0)
-x_train = x_train.apply(lambda x: x.map(data_to_number))
+# # Preeche os missing values com valor padrão
+# x_train.fillna(0)
+# x_train = x_train.apply(lambda x: x.map(data_to_number))
+
+x_train = x_train.apply(lambda x: x.map(data_clear))
+imputer = KNNImputer(n_neighbors=2, weights='uniform')
+for i in atributes
+
+x_train = pd.DataFrame(imputer.fit_transform(x_train))
 
 # cria um dataset e inicia o modelo
 data_sets = [(x_train, y_train),(x_test, y_test)]
-dt.decision_tree(data_sets)
+print(data_sets)
+# dt.decision_tree(data_sets)
