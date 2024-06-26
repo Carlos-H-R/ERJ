@@ -35,19 +35,40 @@ Resultados (substituindo missing por 0):
 
 
 Tratando Missing Values
-    - Interpolação
-    - KNN
+    - KNN (Usado KNN para Todos):
     - Probabilidade
+
+Resultados (usando KNN para todos):
+    Acuracia: 0.7976190476190477
+    Precisao: 0.9117647058823529
+    Recall:   0.8493150684931506
+    Conf. M:  [[ 10  12]
+            [ 22 124]]
+
+Resultados (usando KNN nos 3 primeiros atributos e Probabilidade no restante):
+
 
 
 Nomalização e discretização
     - Os 3 primeiros atributos são inteiros não negativos e estão na mesma escala
     - Testar normalizar os tres primeiros atributos
-        (Resultados -> se melhorar manter)
+        
+Resultados:        
+        Acuracia: 0.7142857142857143
+        Precisao: 0.9375
+        Recall:   0.7191780821917808
+        Conf. M:  [[ 15   7]
+        [ 41 105]]
+    Como se pode observar houve uma piora ao normalizar os primeiros atributos
+    Provavelmente isso deve ocorrer pois as entradas de teste não estão normalizadas
+
+-> Normalização removida
 
 
 Seleção de variável
     - olhar para a árvore e observar os atributos mais relevantes
+
+    
     - usar combinações exaustivas de atributos para escolher quais remover
 
 

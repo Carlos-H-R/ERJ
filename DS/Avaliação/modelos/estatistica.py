@@ -27,7 +27,8 @@ def check_balance(colum):
         return n1/n0
 
 # Lê a base e guarda nema variável
-base = pd.read_excel(r'./Avaliação/lepto_base.xlsx', sheet_name='base_original')
+# base = pd.read_excel(r'./Avaliação/lepto_base.xlsx', sheet_name='base_original')
+base = pd.read_csv(r'./modelos/coisa.csv')
 
 # Completa os espaços vazios com zero
 base_1 = base.fillna(0)

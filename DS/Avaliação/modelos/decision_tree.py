@@ -9,6 +9,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
+from sklearn.tree import export_text
+
 
 def decision_tree(data_set):
     depth={"criterion":['gini', 'entropy'],
@@ -25,6 +27,7 @@ def decision_tree(data_set):
 
     DTC_grid = GridSearchCV(estimator=DTC, param_grid=depth, cv=6, scoring='f1')
     DTC = DTC_grid.fit(x_train,y_train)
+    # print(DTC.feature_names_in_)
 
     y_pred = DTC.predict(x_test)
 
