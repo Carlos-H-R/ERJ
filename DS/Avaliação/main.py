@@ -4,9 +4,10 @@ import modelos.decision_tree as dt
 # import modelos.estatistica as est
 
 from sklearn.impute import KNNImputer
+from sklearn.model_selection import StratifiedKFold
 # from sklearn.preprocessing import MinMaxScaler
 
-from ReliefF import ReliefF
+from skrebate import ReliefF
 from functools import partial
 
 
@@ -32,6 +33,14 @@ def data_clear(data: pd.DataFrame):
     else:
         return data
     
+def fill_blank(data: pd.DataFrame):
+    imputer = KNNImputer(n_neighbors=2, weights='uniform')
+    filled_up = imputer.fit_transform(data)
+    data['T_primeiros_sintomas_atendimento_medico'] = filled_up[0]
+    data['T_primeiros_sintomas_coleta_amostra_ELISA'] = filled_up[1]
+    data['T_atendimento_medico_internação_hospitalar'] = filled_up[2]
+
+
 
 # Lê a base e armazena em uma variável
 base = pd.read_excel(r'base/lepto_base.xlsx', sheet_name='base_original')
@@ -49,9 +58,7 @@ y_test = base.iloc[952:,-1]
 # Criando um imputer para preencher os missing values usando KNN
 x_train = x_train.apply(lambda x: x.map(data_clear))
 
-imputer = KNNImputer(n_neighbors=2, weights='uniform')
-filled_up = imputer.fit_transform(x_train)
-x_train = pd.DataFrame(filled_up, columns=x_train.columns)
+
 
 
 # Remove os outliers da base de treino para o atributo em questão
@@ -62,6 +69,9 @@ outlier(x_train)
 filled_up = imputer.fit_transform(x_train)
 x_train = pd.DataFrame(filled_up, columns=x_train.columns)
 
+file = open(file='coisa.csv', mode='+w')
+file.write(x_train.to_csv())
+file.close()
 
 # # Normalizando 
 # scaler = MinMaxScaler()
@@ -72,15 +82,21 @@ x_train = pd.DataFrame(filled_up, columns=x_train.columns)
 # x_train['T_atendimento_medico_internação_hospitalar'] = normalized[2]
 
 
-# # Seleção de Variáveis
-# relief = ReliefF(n_neighbors=2, n_features_to_keep=2)
-# relief.fit(x_train,y_train)
+# Seleção de Variáveis
+features = x_train.columns.tolist()
+x_train1 = x_train.to_numpy()
+y_train1 = y_train.to_numpy()
 
-# x_train_reduced = relief.transform(x_train)
-# x_test_reduced  = relief.transform(y_train)
+relief = ReliefF(n_features_to_select=12, n_neighbors=30)
+relief.fit(x_train1,y_train1)
 
-# # x_train = pd.DataFrame(x_train_reduced, columns=[x_train.)
-# # x_test  = pd.DataFrame(x_test_reduced)
+number_of_features = 7
+top_features = relief.top_features_
+reduced_features = top_features[number_of_features:]
+
+for i in reduced_features:
+    x_train.drop(columns=features[i], inplace=True)
+    x_test.drop(columns=features[i], inplace=True)
 
 
 # cria um dataset e inicia o modelo

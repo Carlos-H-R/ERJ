@@ -65,11 +65,40 @@ Resultados:
 -> Normalização removida
 
 
+Alterando a maneira que vai ser dividido a base de treino e a de teste:
+    - A base é muito desbalanceada em relação a classe de saída (Evolução)
+    - Isso está impossibilitando o uso do algoritmo ReliefF
+    - Por isso se faz necessário mudar a maneira como é dividida a base 
+        para gerantir que as frações não fiquem desbalanceadas
+
+    -> Em vez de dividir diretamente com índices, passaremos a utilizar o 
+        StratifiedKFold para dividir garantindo balanceamento
+
+
 Seleção de variável
     - olhar para a árvore e observar os atributos mais relevantes
 
     
     - usar combinações exaustivas de atributos para escolher quais remover
+
+Resultado (Com o RelliefF escolhendo apenas 6 atributos):
+    Acuracia: 0.8333333333333334
+    Precisao: 0.927536231884058
+    Recall:   0.8767123287671232
+    Conf. M:  [[ 12  10]
+               [ 18 128]]
+
+Resultado (Com o RelliefF escolhendo apenas 7 atributos):
+    Acuracia: 0.8214285714285714
+    Precisao: 0.9202898550724637
+    Recall:   0.8698630136986302
+    Conf. M:  [[ 11  11]
+               [ 19 127]]
+
+
+balanceamento
+A base é desbalanceada e portando pode ter resultado inadequados
+- 
 
 
 Testar os resultados dessa base com outro modelo (tava pensando no Naive Bayes)
