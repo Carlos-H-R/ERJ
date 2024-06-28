@@ -61,7 +61,7 @@ target = base.iloc[:,-1]
 # x_test = base.iloc[952:,:-1]
 # y_test = base.iloc[952:,-1]
 
-x_train, x_test, y_train, y_test = train_test_split(data, target, test_size=0.15, random_state=6, stratify=target)
+x_train, x_test, y_train, y_test = train_test_split(data, target, test_size=0.15, random_state=64, stratify=target)
 
 
 # Criando um imputer para preencher os missing values usando KNN
