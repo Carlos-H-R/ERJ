@@ -38,14 +38,19 @@ Tratando Missing Values
     - KNN (Usado KNN para Todos):
     - Probabilidade
 
-Resultados (usando KNN para todos):
+Resultados (usando KNN para todos 10-neighbors):
     Acuracia: 0.7976190476190477
     Precisao: 0.9117647058823529
     Recall:   0.8493150684931506
     Conf. M:  [[ 10  12]
             [ 22 124]]
 
-Resultados (usando KNN nos 3 primeiros atributos e Probabilidade no restante):
+Resultados (usando KNN para todos 1-neighbor):
+    Acuracia: 0.8333333333333334
+    Precisao: 0.927536231884058
+    Recall:   0.8767123287671232
+    Conf. M:  [[ 12  10]
+               [ 18 128]]
 
 
 
@@ -72,14 +77,55 @@ Alterando a maneira que vai ser dividido a base de treino e a de teste:
         para gerantir que as frações não fiquem desbalanceadas
 
     -> Em vez de dividir diretamente com índices, passaremos a utilizar o 
-        StratifiedKFold para dividir garantindo balanceamento
+        train_test_split(com stratify) para dividir garantindo balanceamento
 
+    Resultado com (train_test_split(data, target, test_size=0.2, random_state=42, stratify=target)):
+        Acuracia: 0.6696428571428571
+        Precisao: 0.8633540372670807
+        Recall:   0.7277486910994765
+        Conf. M:  [[ 11  22]
+                   [ 52 139]]
+
+    Resultado com (train_test_split(data, target, test_size=0.3, random_state=40, stratify=target)):
+        Acuracia: 0.7708333333333334
+        Precisao: 0.9233870967741935
+        Recall:   0.7979094076655052
+        Conf. M:  [[ 30  19]
+                   [ 58 229]]
+
+    Resultado com (train_test_split(data, target, test_size=0.3, random_state=40)):
+        Acuracia: 0.7529761904761905
+        Precisao: 0.9117647058823529
+        Recall:   0.7777777777777778
+        Conf. M:  [[ 36  21]
+                   [ 62 217]]
+
+    Resultado com (data, target, test_size=0.15, random_state=40):
+        Acuracia: 0.7380952380952381
+        Precisao: 0.9292035398230089
+        Recall:   0.7446808510638298
+        Conf. M:  [[ 19   8]
+                   [ 36 105]]
+
+    Resultado com (data, target, test_size=0.15, random_state=40, stratify=target):
+        Acuracia: 0.7738095238095238
+        Precisao: 0.92
+        Recall:   0.8041958041958042
+        Conf. M:  [[ 15  10]
+                   [ 28 115]]
+
+    Resultado com (data, target, test_size=0.15, random_state=46, stratify=target):
+        Acuracia: 0.8035714285714286
+        Precisao: 0.9296875
+        Recall:   0.8321678321678322
+        Conf. M:  [[ 16   9]
+                   [ 24 119]]
+
+    -> É possível observar que a maneira como os dados são distribuidos afetam bastante o resultado 
+    
 
 Seleção de variável
-    - olhar para a árvore e observar os atributos mais relevantes
-
-    
-    - usar combinações exaustivas de atributos para escolher quais remover
+    - usado ReliefF (n_features_to_select=12, n_neighbors=30)
 
 Resultado (Com o RelliefF escolhendo apenas 6 atributos):
     Acuracia: 0.8333333333333334
@@ -96,34 +142,7 @@ Resultado (Com o RelliefF escolhendo apenas 7 atributos):
                [ 19 127]]
 
 
-balanceamento
-A base é desbalanceada e portando pode ter resultado inadequados
-- 
+-> Como se trata de uma base pequena e desbalanceada, ajustar o modelo para melhorar as métricas tráz um grande risco de gerar um overfitting
 
 
 Testar os resultados dessa base com outro modelo (tava pensando no Naive Bayes)
-
-
-
-
-- Próximas tarefas: 
-    1. Identificar Outliers
-    2. Definir Como completar missing value de forma mais adequada
-    3. Verificar se é necessário normalizar ou discretizar
-    4. Seleção de variáveis/redução da base
-
-    Obs.: A cada tarefa deve-se reportar o quê foi feito e o porquê.
-          Rodar o modelo e usar os resultados como parâmetro para as decisões
-          A meta é elevar as métricas até pelo menos 0.9
-
-
-Script para calcular a frequência de preenchimento dos atributos
-    frequencia = base.count()
-    frequencia = frequencia.map(lambda x: x / 1120)
-    print(frequencia)
-
-
-
-Algumas questões:
-    As alterações só devem ser feitas na base de treino, então como fazer a base de teste rodar no modelo?
-    
