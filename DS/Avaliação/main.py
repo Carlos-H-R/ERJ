@@ -98,7 +98,7 @@ y_train1 = y_train.to_numpy()
 relief = ReliefF(n_features_to_select=12, n_neighbors=30)
 relief.fit(x_train1,y_train1)
 
-number_of_features = 6
+number_of_features = 10
 top_features = relief.top_features_
 reduced_features = top_features[number_of_features:]
 
