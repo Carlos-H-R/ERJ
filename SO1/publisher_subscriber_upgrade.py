@@ -8,6 +8,14 @@ from queue import Queue
 topics = ('esportes', 'noticias', 'tecnologia')
 
 
+class Publisher():
+    def __init__(self) -> None:
+        self.start()
+    
+    def start():
+        pass
+
+
 def publisher(publisher:str ,queue: Queue):
     # Envia mensagens para tópicos específicos (esportes, noticias, tecnologia)
     k = 15

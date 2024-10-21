@@ -10,7 +10,7 @@ topics = ('esportes', 'noticias', 'tecnologia')
 
 def publisher(publisher:str ,queue: Queue):
     # Envia mensagens para tópicos específicos (esportes, noticias, tecnologia)
-    k = 15
+    k = 20
 
     while(k >= 0):
         current_topic = rd(0,2)
@@ -20,13 +20,12 @@ def publisher(publisher:str ,queue: Queue):
         time.sleep(2)
 
 
-def subscriber(name: str, list_of_subscribers: dict, channel):
+def subscriber(name: str, topics_queue: Queue, list_of_subscribers: dict):
     # Assinam um ou mais tópicos e recebem mensagens de acordo com esses tópicos
     
     # assinando
     subscription = topics[rd(0,2)]
     list_of_subscribers[subscription].append(name)
-    channel[name] = Queue()
     print(f"{name} inscrita no topico {subscription}")
 
     # receive message
@@ -34,7 +33,7 @@ def subscriber(name: str, list_of_subscribers: dict, channel):
 
     while(listening):
         try:
-            message = channel[name].get(timeout=60)
+            message = topics_queue[subscription].get(timeout=60)
             print(f"{name} recebeu mensagem: {message}")
             # time.sleep(1)
 
@@ -43,14 +42,14 @@ def subscriber(name: str, list_of_subscribers: dict, channel):
             listening = False
 
 
-def broker(messages_queue: Queue, list_of_subscribers: dict, subscribers_channels: dict):
+def broker(messages_queue: Queue, topics_queue: dict(), list_of_subscribers):
     while(threading.active_count() > 2):
         try:
             message, topic = messages_queue.get(timeout=5)
 
             if len(list_of_subscribers[topic]) > 0:
-                for sub in list_of_subscribers[topic]:
-                    subscribers_channels[sub].put(message)
+                for i in range(len(list_of_subscribers[topic])):
+                    topics_queue[topic].put(message)
 
             else:
                 print("Nao ha assinantes! Mensagem descartada")
@@ -66,17 +65,19 @@ def broker(messages_queue: Queue, list_of_subscribers: dict, subscribers_channel
 
 if __name__ == "__main__":
     all_messages = Queue()
+    topics_queue = {'esportes': Queue(), 'noticias': Queue(), 'tecnologia': Queue()}
     list_of_subscribers = {'esportes': [], 'noticias': [], 'tecnologia': []}
-    subscribers_channels = {}
 
-    p1 = threading.Thread(target=publisher, args=("Publicador A", all_messages, ))
-    p2 = threading.Thread(target=publisher, args=("Publicador B", all_messages, ))
-    s1 = threading.Thread(target=subscriber, args=("Assinatura 1", list_of_subscribers, subscribers_channels))
-    s2 = threading.Thread(target=subscriber, args=("Assinatura 2", list_of_subscribers, subscribers_channels))
-    b0 = threading.Thread(target=broker, args=(all_messages, list_of_subscribers, subscribers_channels))
+    p1 = threading.Thread(target=publisher, args=("Publicador A",all_messages, ))
+    p2 = threading.Thread(target=publisher, args=("Publicador B",all_messages, ))
+    s1 = threading.Thread(target=subscriber, args=("Assinatura 1",topics_queue, list_of_subscribers))
+    s2 = threading.Thread(target=subscriber, args=("Assinatura 2",topics_queue, list_of_subscribers))
+    s3 = threading.Thread(target=subscriber, args=("Assinatura 3",topics_queue, list_of_subscribers))
+    b0 = threading.Thread(target=broker, args=(all_messages, topics_queue, list_of_subscribers))
 
     p1.start()
     p2.start()
     s1.start()
     s2.start()
+    s3.start()
     b0.start()
